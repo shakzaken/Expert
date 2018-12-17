@@ -1,0 +1,10 @@
+const HTTP_STATUS = {
+  BAD_REQUEST: 400,
+  OK: 200,
+  NOT_FOUND: 404,
+  UNAUTHORIZED: 401
+}
+
+
+
+module.exports = HTTP_STATUS;

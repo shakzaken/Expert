@@ -1,4 +1,4 @@
-## Expert documentation
+# Expert documentation
 
 - Users
   - [Users Model](#users-model)
@@ -15,7 +15,7 @@
 
 
 
-### Users Model
+## Users Model
 
   - name 
     - String
@@ -36,11 +36,11 @@
     - max length 512
     - unique
 
-### Users API
+## Users API
 
-#### post /users
+### post /users
 
-request should include an object in this pattern
+Request should include an object in this pattern
 ```javascript
 const user = {
   name: String,
@@ -50,24 +50,24 @@ const user = {
 ```
 Create a user and return the result to the client.
 
-* Requrst body should be validated according to the User Model.
-* if email is already exists send 400 to the client with appropiate message.
-* hash the password and save the hashed version in the database.
+* Request body should be validated according to the User Model.
+* If email is already exists send 400 to the client with appropiate message.
+* Hash the password and save the hashed version in the database.
 
-#### delete /users/:id
+### delete /users/:id
 
 Delete a user from the database.
 
-request body should include valid id.
+Request body should include valid id.
 
 * If the id is invalid send 400 back to the client.
 
-#### get /users
-  return all of the users to the client.
+### get /users
+  Return all of the users to the client.
 
-#### put /users
+### put /users
 
-request should include an object in this pattern
+Request should include an object in this pattern
 ```javascript
 const user = {
   name: String
@@ -79,7 +79,7 @@ Update User name and send the result to the client.
 
 
 
-### Categories Model
+## Categories Model
 
   - name
     - String
@@ -89,30 +89,30 @@ Update User name and send the result to the client.
     - unique
 
 
-### Categories API
+## Categories API
   
-#### post: /categories 
+### post: /categories 
 
-request should include an object in this pattern 
+Request should include an object in this pattern 
 ```javascript
 const request = {
    name: String
 };
 ```
-create category in the server and return the result to the user.
+Create category in the server and return the result to the user.
 
 * If the name is alreay exists in the database , return 400 with appropiate message to the user.
-* valid body according to the Model.
+* Valid body according to the Model.
    
-#### delete: /categories/:id
+### delete: /categories/:id
 
-request should include valid id.
-if the id is invalid return 400;
+Request should include valid id.
+If the id is invalid return 400;
 
-#### get: /categories 
-return all of the categories.
+### get: /categories 
+Return all of the categories.
 
-### Books Model 
+## Books Model 
 
   - name
     - String
@@ -143,7 +143,7 @@ return all of the categories.
 
     
 
-#### post /books
+### post /books
 
 Create a book in the server and return it to the client.
 
@@ -160,13 +160,13 @@ const book = {
 * If the name already exists in the database return 400.
 
 
-#### delete /books/:id
+### delete /books/:id
 
 Delete a book from the server according to the id parameter.
 
 Request should include a valid id.
 
-#### put /books/:id
+### put /books/:id
 
 Update a book in the server.
 
@@ -182,6 +182,6 @@ const book = {
 * Validate the request body according to the Book Model.
 * If the name in the request body is already exists and is not the same as the name of the current book, return 400 with appropriate message.
 
-#### get /books
+### get /books
 
-return all the books to the client.
+Return all the books to the client.

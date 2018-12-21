@@ -10,6 +10,7 @@ const categoriesRoute = require('./routes/categories.routes');
 
 app.use(bodyParser.json());
 
+
 app.use("/users",usersRoute);
 app.use("/books",booksRoute);
 app.use("/categories",categoriesRoute);

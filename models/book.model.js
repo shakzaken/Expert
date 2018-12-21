@@ -27,7 +27,8 @@ const bookSchema = new Schema({
     default: Date.now()
   },
   categoryId: {
-    type: ObjectId,
+    type: Schema.Types.ObjectId,
+    ref: "Category",
     required: true
   }
 });

@@ -142,6 +142,7 @@ Return all of the categories.
     - default 
 
     
+## Books API
 
 ### post /books
 

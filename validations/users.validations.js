@@ -1,10 +1,17 @@
 const Joi = require("joi");
 
-const bookSchema = Joi.object().keys({
+const createUserSchema = Joi.object().keys({
   name: Joi.string().min(3).max(255).required(),
   email: Joi.string().email(),
   password: Joi.string().min(4).max(512).required(),
   
 });
+const updateUserSchema = Joi.object().keys({
+  name: Joi.string().min(3).max(255).required(),
+  email: Joi.string().email()
+});
 
-module.exports =  bookSchema;
+module.exports = {
+  createUserSchema,
+  updateUserSchema
+}

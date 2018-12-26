@@ -45,7 +45,7 @@ router.put("/:id",async (req,res) =>{
     if(!bookFromId){
       throw new Error("Invalid Id");
     }
-    if(bookFromName && bookFromName._id !== bookFromId._id){
+    if(bookFromName && bookFromName.id !== bookFromId.id){
       res.status(BAD_REQUEST).send(responses.nameAlreadyExists);
     }
     await bookFromId.set(req.body).save();
@@ -66,6 +66,17 @@ router.delete("/",async (req,res) => {
     if(!book){
       throw new Error("Book not found");
     }
+    res.send(book);
+  }
+  catch(err){
+    console.log(err);
+    res.status(INTERNAL_SERVER_ERROR).send(responses.internalServerError);
+  }
+});
+
+router.delete("/:id", async (req,res) =>{
+  try{
+    const book = await bookModel.findByIdAndDelete(req.params.id);
     res.send(book);
   }
   catch(err){

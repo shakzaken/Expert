@@ -7,7 +7,9 @@ const PORT = process.env.PORT || 3500;
 const usersRoute = require('./routes/users.routes');
 const booksRoute = require('./routes/books.routes');
 const categoriesRoute = require('./routes/categories.routes');
+const authRoute = require("./routes/auth.routes");
 const errorMiddleware = require("./middlewares/error.middleware");
+
 
 app.use(bodyParser.json());
 
@@ -15,6 +17,7 @@ app.use(bodyParser.json());
 app.use("/users",usersRoute);
 app.use("/books",booksRoute);
 app.use("/categories",categoriesRoute);
+app.use("/auth",authRoute);
 app.use(errorMiddleware);
 
 app.get("/",(req,res) =>{

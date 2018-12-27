@@ -1,25 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const CategoryModel = require('../models/category.model');
-const {BAD_REQUEST,INTERNAL_SERVER_ERROR} = require('../constants/http_status');
+const {BAD_REQUEST} = require('../constants/http_status');
 const categoryValidationSchema = require('../validations/categories.validations');
-const responses = require("./responses/categories.responses");
+const responses = require("../responses/categories.responses");
 const Joi = require('joi');
+const asyncMiddleware = require("../middlewares/async.middleware");
+const authMiddleware = require("../middlewares/auth.middleware");
 
-router.get("/",async (req,res) =>{
+router.get("/",asyncMiddleware(async (req,res) =>{
 
-  try{
     const categories = await CategoryModel.find({});
-    res.send(categories);
-  }catch(err){
-    console.log(err);
-    res.status(INTERNAL_SERVER_ERROR).send(responses.internalServerError);
-  }
-  
-});
+    res.send(categories);  
+}));
 
-router.post("/",async (req,res) =>{
-  try{
+router.use("/",authMiddleware);
+
+router.post("/",asyncMiddleware(async (req,res) =>{
+
     await Joi.validate(req.body,categoryValidationSchema);
     const checkForCategory = await CategoryModel.findOne({name : req.body.name});
     if(checkForCategory) 
@@ -27,38 +25,25 @@ router.post("/",async (req,res) =>{
     const category = new CategoryModel(req.body);
     await category.save();
     res.send(category);
-  }catch(err){
-    console.log(err);
-    res.status(INTERNAL_SERVER_ERROR).send(responses.internalServerError); 
-  }
-});
+}));
 
-router.delete("/:id",async (req,res) =>{
+router.delete("/:id",asyncMiddleware(async (req,res) =>{
+  const id = req.params.id;
+  const category = await CategoryModel.findByIdAndDelete(id);
+  res.send(category);
+  
+}));
 
-  try{
-    const id = req.params.id;
-    const category = await CategoryModel.findByIdAndDelete(id);
-    res.send(category);
-  } catch(err){
-    console.log(err);
-    res.status(INTERNAL_SERVER_ERROR).send(responses.internalServerError);
-  }
-});
+router.delete("/",asyncMiddleware(async (req,res) =>{
 
-router.delete("/",async (req,res) =>{
-
-  try{
-    const category = await CategoryModel.findOneAndDelete({
-      name: req.body.name
-    });
-    if(!category){
-      throw new Error("Category not found");
-    } 
-    res.send(category);
-  } catch(err){
-    console.log(err);
-    res.status(INTERNAL_SERVER_ERROR).send(responses.internalServerError);
-  }
-});
+  const category = await CategoryModel.findOneAndDelete({
+    name: req.body.name
+  });
+  if(!category){
+    throw new Error("Category not found");
+  } 
+  res.send(category);
+  
+}));
 
 module.exports = router;

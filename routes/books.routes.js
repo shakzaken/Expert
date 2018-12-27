@@ -2,25 +2,23 @@ const express = require('express');
 const router = express.Router();
 const Joi = require('joi');
 const bookModel = require('../models/book.model');
-const {BAD_REQUEST,INTERNAL_SERVER_ERROR} = require("../constants/http_status");
-const responses = require("./responses/books.responses");
+const {BAD_REQUEST} = require("../constants/http_status");
+const responses = require("../responses/books.responses");
 const booksValidationSchema = require("../validations/books.validations");
+const asyncMiddleware = require("../middlewares/async.middleware");
+const authMiddleware = require("../middlewares/auth.middleware");
 
-router.get("/",async (req,res) =>{
+router.get("/",asyncMiddleware (async (req,res) =>{
 
-  try{
-    const books = await bookModel.find({});
-    res.send(books);
-  }
-  catch(err){
-    console.log(err);
-    res.status(INTERNAL_SERVER_ERROR).send(responses.internalServerError);
-  }
-});
+  const books = await bookModel.find({});
+  res.send(books);
+}));
 
-router.post("/",async (req,res) =>{
 
-  try{
+router.use("/",authMiddleware);
+
+router.post("/",asyncMiddleware( async (req,res) =>{
+
     await Joi.validate(req.body,booksValidationSchema);
     const testBook = await bookModel.findOne({name: req.body.name});
     if(testBook){
@@ -28,17 +26,11 @@ router.post("/",async (req,res) =>{
     }
     const newBook = await new bookModel(req.body).save();
     res.send(newBook);
-  }
-  catch(err){
-    console.log(err);
-    res.status(INTERNAL_SERVER_ERROR).send(responses.internalServerError);
-  }
   
-});
+}));
 
-router.put("/:id",async (req,res) =>{
+router.put("/:id",asyncMiddleware (async (req,res) =>{
 
-  try{
     await Joi.validate(req.body,booksValidationSchema);
     const bookFromName = await bookModel.findOne({name: req.body.name});
     const bookFromId = await bookModel.findById(req.params.id);
@@ -50,39 +42,22 @@ router.put("/:id",async (req,res) =>{
     }
     await bookFromId.set(req.body).save();
     res.send(bookFromId);
-    
-  }
-  catch(err){
-    console.log(err);
-    res.status(INTERNAL_SERVER_ERROR).send(responses.internalServerError);
-  }
-});
+}));
 
-router.delete("/",async (req,res) => {
-  try{
+router.delete("/",asyncMiddleware ( async (req,res) => {
+
     const book =  await bookModel.findOneAndDelete({
       name: req.body.name
     });
     if(!book){
       throw new Error("Book not found");
     }
-    res.send(book);
-  }
-  catch(err){
-    console.log(err);
-    res.status(INTERNAL_SERVER_ERROR).send(responses.internalServerError);
-  }
-});
+    res.send(book); 
+}));
 
-router.delete("/:id", async (req,res) =>{
-  try{
+router.delete("/:id", asyncMiddleware(async (req,res) =>{
     const book = await bookModel.findByIdAndDelete(req.params.id);
     res.send(book);
-  }
-  catch(err){
-    console.log(err);
-    res.status(INTERNAL_SERVER_ERROR).send(responses.internalServerError);
-  }
-});
+}));
 
 module.exports = router;

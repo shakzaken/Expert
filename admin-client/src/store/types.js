@@ -1,0 +1,31 @@
+
+
+export const USERS =  {
+
+  GETTERS:{
+    LIST:         "USERS_GETTERS_LIST"
+  },
+  MUTATIONS:{
+    SET_LIST:     "USERS_MUTATIONS_SET_LIST"
+  },
+  ACTIONS:{
+    FETCH_LIST:   "USERS_ACTIONS_FETCH_LIST"
+  }
+
+}
+ 
+export const CATEGORIES = {
+
+  GETTERS:{
+    LIST:         "CATEGORIES_GETTERS_LIST"
+  },
+  MUTATIONS:{
+    SET_LIST:     "CATEGORIES_MUTATIONS_SET_LIST"
+  },
+  ACTIONS:{
+    FETCH_LIST:   "CATEGORIES_ACTIONS_FETCH_LIST"
+  }
+}
+
+
+

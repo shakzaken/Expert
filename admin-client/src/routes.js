@@ -3,15 +3,22 @@ import {UsersList} from "./pages/users";
 import {BooksList} from "./pages/books";
 import {CategoriesList} from "./pages/categories";
 import {LoginPage} from "./pages/auth";
-import {} from "./pages/auth/index";
+import Vue from "vue";
+import VueRouter from "vue-router";
+
+Vue.use(VueRouter);
 
 
-  const routes = [
+const routes = [
     { path: "/users", component: UsersList },
     { path: "/books", component: BooksList},
     { path: "/categories",component: CategoriesList},
     { path: "/login",component: LoginPage}
-  ]
+];
 
 
-export default routes;;
+const router = new VueRouter({
+  routes
+});
+
+export default router;

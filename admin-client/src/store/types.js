@@ -12,7 +12,7 @@ export const USERS =  {
     FETCH_LIST:   "USERS_ACTIONS_FETCH_LIST"
   }
 
-}
+};
  
 export const CATEGORIES = {
 
@@ -25,7 +25,20 @@ export const CATEGORIES = {
   ACTIONS:{
     FETCH_LIST:   "CATEGORIES_ACTIONS_FETCH_LIST"
   }
-}
+};
+
+export const BOOKS = {
+
+    GETTERS:{
+      LIST:         "BOOKS_GETTERS_LIST"
+    },
+    MUTATIONS:{
+      SET_LIST:     "BOOKS_MUTATIONS_SET_LIST"
+    },
+    ACTIONS:{
+      FETCH_LIST:   "BOOKS_ACTIONS_FETCH_LIST"
+    }
+  };
 
 
 

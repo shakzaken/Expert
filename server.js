@@ -9,6 +9,11 @@ const booksRoute = require('./routes/books.routes');
 const categoriesRoute = require('./routes/categories.routes');
 const authRoute = require("./routes/auth.routes");
 const errorMiddleware = require("./middlewares/error.middleware");
+const cors = require('cors');
+
+if(app.get('env') === "development"){
+    app.use(cors());
+}
 
 
 app.use(bodyParser.json());

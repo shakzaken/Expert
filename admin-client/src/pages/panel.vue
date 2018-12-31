@@ -1,17 +1,15 @@
 <template>
-  
-<div class="panel">
-  <navbar/>
-  <div class="panel-body">
-    <div class="sidebar-container">
-      <sidebar/>
+    <div class="panel">
+        <navbar/>
+        <div class="panel-body">
+            <div class="sidebar-container">
+                <sidebar/>
+            </div>
+            <div class="dashboard-container">
+                <router-view></router-view>
+            </div>
+        </div>
     </div>
-    <div class="dashboard-container">
-       <router-view></router-view>
-    </div>
-  </div>
-</div>
-
 </template>
 
 <script>
@@ -24,7 +22,7 @@ export default {
     navbar,
     sidebar
   }
-}
+}   
 </script>
 
 <style lang="scss" scoped>

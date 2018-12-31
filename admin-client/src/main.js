@@ -1,15 +1,12 @@
 import Vue from 'vue';
 import App from './App.vue';
-import VueRouter from 'vue-router';
-import routes from "./routes";
+import router from "./routes";
+import axios from "axios";
+import store from "./store/store";
 
 
-
-Vue.use(VueRouter);
-
-const router = new VueRouter({
-  routes
-});
+console.log(process.env.VUE_APP_SERVER_URL);
+axios.defaults.baseURL = process.env.VUE_APP_SERVER_URL;
 
 
 Vue.config.productionTip = false
@@ -17,4 +14,5 @@ Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
   router,
+  store
 }).$mount('#app')

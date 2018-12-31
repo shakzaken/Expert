@@ -19,28 +19,24 @@
 </template>
 
 <script>
+import {USERS} from "../../store/types.js";
+
 export default {
   name:"UsersList",
-  data: () => {
-   return { 
-      users: [
-        {
-          name: "shaks",
-          email: "shaks@gmail.com"
-        },
-        {
-          name: "moshe",
-          email: "moshe@gmail.com"
-        },
-        {
-          name: "meir",
-          email: "meir@gmail.com"
-        }
-      ]
-    };
+  created(){
+      this.$store.dispatch(USERS.ACTIONS.FETCH_LIST);
+  },
+  computed:{
+      users(){
+        return this.$store.getters[USERS.GETTERS.LIST];
+      }   
   }
+   
 }
 </script>
+
+
+
 
 
 <style lang="scss" scoped>

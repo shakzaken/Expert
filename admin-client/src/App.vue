@@ -6,7 +6,6 @@
 
 <script>
 import panel from "./pages/panel.vue";
-
 export default {
   name: 'app',
   components: {
@@ -27,7 +26,8 @@ export default {
 #app {
   font-family: 'Quicksand', sans-serif;
   box-sizing: border-box;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
+  font-weight: 500;
   
 }
 html{

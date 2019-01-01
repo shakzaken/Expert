@@ -1,20 +1,23 @@
 <template>
-  <div>
-    <h2>Users List</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="user in users" :key="user.email">
-          <td>{{user.name}}</td>
-          <td>{{user.email}}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="users-list">
+        <div class="users-list-header">
+            <h3 class="users-list-title">Users list</h3>
+            <div class="users-list-button">
+                <el-button type="info" plain round>Create User</el-button>
+            </div>
+        </div>
+        <el-table :data="users">
+            <el-table-column 
+                prop="name"
+                label="Name"
+                width="180">
+            </el-table-column>
+            <el-table-column 
+                prop="email"
+                label="Email"
+                width="180">
+            </el-table-column>
+        </el-table>
   </div>
 </template>
 
@@ -41,23 +44,20 @@ export default {
 
 <style lang="scss" scoped>
 
-  h2{
-    margin-bottom: 4rem;
-  }
-  table{
-    width: 60%;
-    text-align: left;
-    padding: 20px;
-    border: 1px solid rgb(189, 189, 189);
-  }
-
-  th{
-    width: 5%;
-    
-  }
-  td{
-    height: 4rem;
-  }
+  .users-list{
+        &-header{
+            display: flex;
+            margin-bottom: 30px; 
+        }
+        &-title{  
+            flex:1;
+            padding-left: 50px;
+            padding-top: 10px;
+        }
+        &-button{
+            flex:1;
+        }
+    }
 
 </style>
 

@@ -27,6 +27,20 @@ export const CATEGORIES = {
   }
 };
 
+export const CATEGORY_FORM = {
+    GETTERS:{
+        NAME: "CATEGORY_FORM_GETTERS_NAME",
+        RULES: "CATEGORY_FORM_GETTERS_RULES",
+        FORM: "CATEGORY_FORM_GETTERS_FROM"
+    },
+    MUTATIONS:{
+        NAME: "CATEGORY_FORM_MUTATIONS_SET_NAME"
+    },
+    ACTIONS:{
+
+    }
+}
+
 export const BOOKS = {
 
     GETTERS:{

@@ -37,7 +37,7 @@ export const CATEGORY_FORM = {
         NAME: "CATEGORY_FORM_MUTATIONS_SET_NAME"
     },
     ACTIONS:{
-
+        CREATE_CATEGORY: "CATEGORY_FORM_CREATE_CATEGORY"
     }
 }
 

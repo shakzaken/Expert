@@ -1,7 +1,7 @@
 import Vue from "vue";
-import { Alert,Button,Table,TableColumn,Form,FormItem,Select,Input} from 'element-ui';   
+import { Alert,Button,Table,TableColumn,Form,FormItem,Select,Input,Message} from 'element-ui';   
 
- export default (function(){
+ export default function(){
     Vue.component(Button.name,Button);
     Vue.component(Alert.name,Alert);
     Vue.component(Table.name,Table);
@@ -10,7 +10,8 @@ import { Alert,Button,Table,TableColumn,Form,FormItem,Select,Input} from 'elemen
     Vue.component(FormItem.name,FormItem);
     Vue.component(Select.name,Select);
     Vue.component(Input.name,Input);
- }());
+    Vue.prototype.$message = Message;
+ }
  
     
 

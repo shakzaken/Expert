@@ -3,7 +3,9 @@
         <div class="categories-list-header">
             <h3 class="categories-list-title">Categories list</h3>
             <div class="categories-list-button">
-                <el-button type="info" plain round>Create Category</el-button>
+                <router-link to="/categories/form">
+                    <el-button type="info" plain round>Create Category</el-button>
+                </router-link>
             </div>
         </div>
         <el-table :data="categories">
@@ -23,7 +25,6 @@
 
 <script>
 import {CATEGORIES} from "../../store/types";
-
 export default {
     name: "CategoriesList",
     created(){

@@ -7,6 +7,7 @@ import ERROR_STATUS from "../constants/errors_status";
 export default {
     state: {
         name: ""
+
     },
     getters:{
         [CATEGORY_FORM.GETTERS.NAME] : (state) => {
@@ -31,24 +32,18 @@ export default {
     },
     actions:{
         [CATEGORY_FORM.ACTIONS.CREATE_CATEGORY] : (context) => {
-            return new Promise((resolve,rejcet) =>{
+            return new Promise((resolve,reject) =>{
                 axios.post("/categories",{
                     name: context.state.name
                 }).then(result =>{
-                    if(result.status  === 400 && result.data.type === "name"){
-                        reject({
-                            status: ERROR_STATUS.NAME_ALREADY_EXISTS,
-                            message: "Category name is already exists"
-                        });
-                    }
                     router.push("/categories");
                     resolve();
-                }).catch(err => reject({
-                    status: ERROR_STATUS.SERVER_ERROR,
-                    message: "SERVER_ERROR"
-                }));
-            });
-            
+                }).catch(err => {
+                    reject(err.response.data);
+                });
+            }); 
         }
+    
+        
     }
 }

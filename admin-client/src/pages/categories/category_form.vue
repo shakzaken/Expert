@@ -23,6 +23,7 @@
 
 <script>
 import {CATEGORY_FORM} from "../../store/types";
+import {ERROR_STATUS} from "../../constants";
 
 export default {
     name:"CategoryForm",
@@ -43,13 +44,15 @@ export default {
         }
     },
     methods:{
-        createCategory(){
-            this.$message.error('Oops, this is a error message.');
-
-            
+        createCategory(){       
             this.$refs["categoryForm"].validate(valid =>{
                 if(valid){
-                    this.$store.dispatch(CATEGORY_FORM.ACTIONS.CREATE_CATEGORY);
+                    this.$store.dispatch(CATEGORY_FORM.ACTIONS.CREATE_CATEGORY)
+                    .catch(errData => {
+                        if(errData.type === "name"){
+                            this.$message.error(errData.message);
+                        }
+                    });
                 }
             });
             

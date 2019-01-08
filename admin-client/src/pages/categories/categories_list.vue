@@ -19,6 +19,18 @@
                 label="Name"
                 width="180">
             </el-table-column>
+               <el-table-column
+                    label="Operations">
+                    <template slot-scope="scope">
+                        <el-button
+                        size="mini"
+                        @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+                        <el-button
+                        size="mini"
+                        type="danger"
+                        @click="handleDelete(scope.row._id)">Delete</el-button>
+                    </template>
+                </el-table-column>
         </el-table>
   </div>
 </template>
@@ -33,6 +45,16 @@ export default {
     computed:{
         categories(){
             return this.$store.getters[CATEGORIES.GETTERS.LIST];
+        }
+    },
+    methods:{
+        handleEdit(index,row){
+           console.log(index,row); 
+        },
+        handleDelete(id){
+            if(confirm("Are you sure you want to delete this category")){
+                this.$store.dispatch(CATEGORIES.ACTIONS.DELETE_CATEGORY,id);
+            }
         }
     }
 }

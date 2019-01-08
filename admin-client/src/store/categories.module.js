@@ -24,6 +24,11 @@ export default {
             }).catch(err =>{
                 console.log(err);
             });
+        },
+        [CATEGORIES.ACTIONS.DELETE_CATEGORY] : (context,id) => {
+            axios.delete(`/categories/${id}`)
+                .then(() => context.dispatch(CATEGORIES.ACTIONS.FETCH_LIST));
+                
         }
     }
 }

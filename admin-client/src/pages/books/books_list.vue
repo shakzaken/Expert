@@ -3,7 +3,9 @@
         <div class="books-list-header">
             <h3 class="books-list-title">Books list</h3>
             <div class="books-list-button">
-                <el-button type="info" plain round>Create Book</el-button>
+                <router-link to="/books/form">
+                    <el-button type="info" plain round>Create Book</el-button>
+                </router-link>
             </div>
         </div>
         <el-table :data="books">

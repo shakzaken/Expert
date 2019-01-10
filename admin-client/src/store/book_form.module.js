@@ -3,11 +3,11 @@ import axios from "axios";
 
 export default {
     state: {
-        name,
-        description,
-        imageUrl,
-        categoryId,
-        categories
+        name : '',
+        description: '',
+        imageUrl: '',
+        categoryId: '',
+        categories: []
     },
     getters:{
         [BOOK_FORM.GETTERS.NAME] : (state) =>{
@@ -38,8 +38,19 @@ export default {
             return {
                 name: [
                     { required: true, message: 'Please input book name', trigger: 'blur' },
-                    { min: 3, max: 255, message: 'Length should be 3 to 255', trigger: 'blur' }
-                  ]
+                    { min: 3, max: 255, message: 'Name length should be 3 to 255', trigger: 'blur' }
+                  ],
+                description: [
+                    { required: true, message: 'Please input book description', trigger: 'blur' },
+                    { min: 5, max: 512, message: 'Description length should be 5 to 512', trigger: 'blur' }
+                ],
+                imageUrl: [
+                    { required: true, message: 'Please input image url', trigger: 'blur' },
+                    { min: 5, max: 512, message: 'Image url length should be 5 to 512', trigger: 'blur' }
+                ],
+                categoryId: [
+                    { required: true, message: 'Please input Category', trigger: 'change' }  
+                ]
             };
         }
     },

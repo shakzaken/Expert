@@ -2,7 +2,7 @@
     <div class="book-form-container">
         <h4 class="header">Book Form</h4>
         <el-form 
-            :model="form" 
+            :model="formData" 
             :rules="rules" 
             ref="bookForm" 
             label-width="120px"
@@ -10,6 +10,27 @@
                 <el-form-item label="Name" prop="name">
                     <el-input v-model="name"></el-input>
                 </el-form-item>
+                <el-form-item label="Image Url" prop="imageUrl">
+                    <el-input v-model="imageUrl"></el-input>
+                </el-form-item>
+                <el-form-item label="Description" prop="description">
+                    <el-input
+                        type="textarea"
+                        :rows="2"
+                        v-model="description">
+                    </el-input>
+                </el-form-item>
+                <el-form-item label="Category" prop="categoryId">
+                    <el-select v-model="categoryId" placeholder="Select Category">
+                        <el-option
+                            v-for="category in categories"
+                            :key="category._id"
+                            :label="category.name"
+                            :value="category._id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                
         </el-form>
         <el-button 
             class="save-button" 
@@ -26,38 +47,57 @@ import {ERROR_STATUS} from "../../constants";
 
 export default {
     name:"BookForm",
+    created(){
+        this.$store.dispatch(BOOK_FORM.ACTIONS.FETCH_CATEGORIES);
+    },
     computed:{
         rules(){
             return this.$store.getters[BOOK_FORM.GETTERS.RULES];
         },
         name:{
-            get: () => this.$store.getters[BOOK_FORM.GETTERS.NAME],
-            set: (name) => this.$store.commit(BOOK_FORM.MUTATIONS.SET_NAME,name)
+            get(){
+                return this.$store.getters[BOOK_FORM.GETTERS.NAME];
+            },
+            set(name) {  
+                this.$store.commit(BOOK_FORM.MUTATIONS.SET_NAME,name);
+            }
         },  
         description:{
-            get: () => this.$store.getters[BOOK_FORM.GETTERS.description],
-            set: (description) => this.$store.commit(BOOK_FORM.MUTATIONS.SET_DESCRIPTION,description)
+            get(){
+                return this.$store.getters[BOOK_FORM.GETTERS.description];
+            },
+            set(description){
+                this.$store.commit(BOOK_FORM.MUTATIONS.SET_DESCRIPTION,description);
+            }
         },
         imageUrl:{
-            get: () => this.$store.getters[BOOK_FORM.GETTERS.imageUrl],
-            set: (imageUrl) => this.$store.commit(BOOK_FORM.MUTATIONS.SET_IMAGE_URL,imageUrl)
+            get(){
+                return this.$store.getters[BOOK_FORM.GETTERS.imageUrl];
+            }, 
+            set(imageUrl){
+                this.$store.commit(BOOK_FORM.MUTATIONS.SET_IMAGE_URL,imageUrl);
+            } 
         },
         categoryId:{
-            get: () => this.$store.getters[BOOK_FORM.GETTERS.CATEGORY_ID],
-            set: (categoryId) => this.$store.commit(BOOK_FORM.MUTATIONS.SET_CATEGORY_ID,categoryId)
+            get(){
+                return this.$store.getters[BOOK_FORM.GETTERS.CATEGORY_ID];
+            },
+            set(categoryId){
+                this.$store.commit(BOOK_FORM.MUTATIONS.SET_CATEGORY_ID,categoryId)
+            }
         },
         categories(){
-            return this.$store.getter[BOOK_FORM.GETTERS.CATEGORIES];
+            return this.$store.getters[BOOK_FORM.GETTERS.CATEGORIES];
         },
         formData(){
-            return this.$store.getters[CATEGORY_FORM.GETTERS.FORM];
+            return this.$store.getters[BOOK_FORM.GETTERS.FORM_DATA];
         }
     },
     methods:{
-        createCategory(){       
-            this.$refs["categoryForm"].validate(valid =>{
+        createBook(){       
+            this.$refs["bookForm"].validate(valid =>{
                 if(valid){
-                    this.$store.dispatch(CATEGORY_FORM.ACTIONS.CREATE_CATEGORY)
+                    this.$store.dispatch(BOOK_FORM.ACTIONS.SAVE_BOOK)
                     .catch(errData => {
                         if(errData.type === "name"){
                             this.$message.error(errData.message);
@@ -73,7 +113,7 @@ export default {
 
 <style lang="scss" scoped>
    
-    .category-form{
+    .book-form{
         width:50%;
     }
     .header{

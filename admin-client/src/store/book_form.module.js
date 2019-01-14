@@ -1,5 +1,6 @@
 import {BOOK_FORM} from "./types";
 import axios from "axios";
+import router from "../router";
 
 export default {
     state: {
@@ -46,7 +47,8 @@ export default {
                 ],
                 imageUrl: [
                     { required: true, message: 'Please input image url', trigger: 'blur' },
-                    { min: 5, max: 512, message: 'Image url length should be 5 to 512', trigger: 'blur' }
+                    { min: 5, max: 512, message: 'Image url length should be 5 to 512', trigger: 'blur' },
+                    { type: 'url', message: 'Please enter a valid url', trigger: 'blur' }
                 ],
                 categoryId: [
                     { required: true, message: 'Please input Category', trigger: 'change' }  
@@ -69,6 +71,12 @@ export default {
         },
         [BOOK_FORM.MUTATIONS.SET_CATEGORIES] : (state,categories) => {
             state.categories = categories;
+        },
+        [BOOK_FORM.MUTATIONS.CLEAR_FORM] : (state) => {
+            state.name = '',
+            state.description = '',
+            state.imageUrl = '',
+            state.categoryId = ''
         }
     },
     actions:{
@@ -84,11 +92,16 @@ export default {
               imageUrl: context.state.imageUrl,
               categoryId: context.state.categoryId  
             };
-            axios.post("/books",data).then(result =>{
-                //TODO
-            }).catch(err =>{
-                //TODO
+            return new Promise((resolve,reject) => {
+                axios.post("/books",data).then(result =>{
+                    router.push("/books");
+                    context.commit(BOOK_FORM.MUTATIONS.CLEAR_FORM);
+                    resolve();
+                }).catch(err =>{
+                    reject(err.response.data);
+                });
             });
+            
         }
     }
 }

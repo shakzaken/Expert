@@ -29,6 +29,18 @@
                 label="Date"
                 width="180">
             </el-table-column>
+            <el-table-column
+                label="Operations">
+                <template slot-scope="scope">
+                    <el-button
+                    size="mini"
+                    @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+                    <el-button
+                    size="mini"
+                    type="danger"
+                    @click="handleDelete(scope.row._id)">Delete</el-button>
+                </template>
+            </el-table-column>
         </el-table>
   </div>
 </template>
@@ -45,6 +57,14 @@ export default {
     computed:{
         books(){
             return this.$store.getters[BOOKS.GETTERS.LIST];
+        }
+    },
+    methods:{
+        handleDelete(id){
+
+        },
+        handleEdit(id){
+
         }
     }
 }

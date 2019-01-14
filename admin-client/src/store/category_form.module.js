@@ -1,6 +1,6 @@
 import {CATEGORY_FORM} from "./types";
 import axios from "axios";
-import router from "../routes";
+import router from "../router";
 import ERROR_STATUS from "../constants/errors_status";
 
 
@@ -28,6 +28,9 @@ export default {
     mutations:{
         [CATEGORY_FORM.MUTATIONS.NAME] : (state,name) => {
             state.name = name;
+        },
+        [CATEGORY_FORM.MUTATIONS.CLEAR_FORM] : (state) => {
+            state.name = '';
         }
     },
     actions:{
@@ -37,6 +40,7 @@ export default {
                     name: context.state.name
                 }).then(result =>{
                     router.push("/categories");
+                    context.commit(CATEGORY_FORM.MUTATIONS.CLEAR_FORM);
                     resolve();
                 }).catch(err => {
                     reject(err.response.data);

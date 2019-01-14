@@ -24,6 +24,14 @@ export default {
             }).catch(err =>{
                 console.log(err);
             });
+        },
+        [BOOKS.ACTIONS.DELETE_BOOK] : (context,id) => {
+            axios.delete(`/books/${id}`).then(result =>{
+                context.dispatch(BOOKS.ACTIONS.FETCH_LIST);
+            }).catch(err =>{
+                console.log(err);
+            });
         }
+        
     }
 }

@@ -8,6 +8,13 @@ const booksValidationSchema = require("../validations/books.validations");
 const asyncMiddleware = require("../middlewares/async.middleware");
 const authMiddleware = require("../middlewares/auth.middleware");
 
+
+router.get("/:id",asyncMiddleware (async (req,res) =>{
+
+    const book = await bookModel.findById(req.params.id);
+    res.send(book);
+  }));
+
 router.get("/",asyncMiddleware (async (req,res) =>{
 
   const books = await bookModel.find({});

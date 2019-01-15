@@ -9,18 +9,21 @@
                 <router-view></router-view>
             </div>
         </div>
+        <Footer/>
     </div>
 </template>
 
 <script>
 import navbar from "../components/navbar.vue";
 import sidebar from "../components/sidebar.vue";
+import Footer from "../components/footer.vue";
 
 export default {
   name: "Panel",
   components:{
     navbar,
-    sidebar
+    sidebar,
+    Footer
   }
 }   
 </script>
@@ -36,9 +39,10 @@ export default {
       margin-left: 10rem;
       margin-top: 5rem;
       flex:5;
+      padding-bottom: 10rem;
     }
     .sidebar-container{
-      flex:1;
+      flex:1; 
     }
   }
 </style>

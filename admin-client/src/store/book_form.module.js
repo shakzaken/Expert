@@ -4,11 +4,13 @@ import router from "../router";
 
 export default {
     state: {
+        id: '',
         name : '',
         description: '',
         imageUrl: '',
         categoryId: '',
-        categories: []
+        categories: [],
+        isEdit: false
     },
     getters:{
         [BOOK_FORM.GETTERS.NAME] : (state) =>{
@@ -35,7 +37,7 @@ export default {
               };
         },
         [BOOK_FORM.GETTERS.RULES] : () => {
-            //TODO
+            
             return {
                 name: [
                     { required: true, message: 'Please input book name', trigger: 'blur' },
@@ -72,6 +74,13 @@ export default {
         [BOOK_FORM.MUTATIONS.SET_CATEGORIES] : (state,categories) => {
             state.categories = categories;
         },
+        [BOOK_FORM.MUTATIONS.SET_BOOK_DATA] : (state,book) => {
+            state.name = book.name;
+            state.description = book.description;
+            state.imageUrl = book.imageUrl;
+            state.categoryId = book.categoryId;
+            state.id = book._id
+        },
         [BOOK_FORM.MUTATIONS.CLEAR_FORM] : (state) => {
             state.name = '',
             state.description = '',
@@ -102,6 +111,12 @@ export default {
                 });
             });
             
+        },
+        [BOOK_FORM.ACTIONS.OPEN_EDIT_FORM] : (context,id) => {
+            axios.get(`/books/${id}`).then(result =>{
+                context.commit(BOOK_FORM.MUTATIONS.SET_BOOK_DATA , result.data);
+                router.push("/books/form");
+            });
         }
     }
 }

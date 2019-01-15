@@ -29,10 +29,10 @@ export default {
 <style lang="scss" scoped>
 
   .sidebar{
-    height:90vh;
+    height:100%;
     background-color: rgb(226, 226, 226);
     border-right: 2px solid rgb(199, 199, 199);
-
+    
     &-list{
       display: flex;
       flex-direction: column;

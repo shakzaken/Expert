@@ -34,7 +34,7 @@
                 <template slot-scope="scope">
                     <el-button
                     size="mini"
-                    @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+                    @click="handleEdit(scope.row._id)">Edit</el-button>
                     <el-button
                     size="mini"
                     type="danger"
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import {BOOKS} from "../../store/types";
+import {BOOKS,BOOK_FORM} from "../../store/types";
 import {Button , Alert} from 'element-ui';
 
 export default {
@@ -61,10 +61,12 @@ export default {
     },
     methods:{
         handleDelete(id){
-
+            if(confirm("Are you sure you want to delete this book?")){
+               this.$store.dispatch(BOOKS.ACTIONS.DELETE_BOOK,id); 
+            }
         },
         handleEdit(id){
-
+            this.$store.dispatch(BOOK_FORM.ACTIONS.OPEN_EDIT_FORM,id);
         }
     }
 }

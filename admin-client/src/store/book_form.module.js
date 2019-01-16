@@ -13,7 +13,7 @@ export default {
         isEdit: false
     },
     getters:{
-        [BOOK_FORM.GETTERS.NAME] : (state) =>{
+        [BOOK_FORM.GETTERS.NAME] : (state) => {
             return state.name;
         },
         [BOOK_FORM.GETTERS.DESCRIPTION] : (state) => {
@@ -35,6 +35,9 @@ export default {
                 imageUrl: state.imageUrl,
                 categoryId: state.categoryId  
               };
+        },
+        [BOOK_FORM.GETTERS.IS_EDIT] : (state) => {
+            return state.isEdit;
         },
         [BOOK_FORM.GETTERS.RULES] : () => {
             
@@ -81,6 +84,9 @@ export default {
             state.categoryId = book.categoryId;
             state.id = book._id
         },
+        [BOOK_FORM.MUTATIONS.SET_EDIT_STATE] : (state) => {
+            state.isEdit = true;
+        },
         [BOOK_FORM.MUTATIONS.CLEAR_FORM] : (state) => {
             state.name = '',
             state.description = '',
@@ -112,9 +118,29 @@ export default {
             });
             
         },
+        [BOOK_FORM.ACTIONS.UPDATE_BOOK] : (context) => {
+            const id = context.state.id;
+            const data = {
+              name: context.state.name,
+              description: context.state.description,
+              imageUrl: context.state.imageUrl,
+              categoryId: context.state.categoryId  
+            };
+            return new Promise((resolve,reject) => {
+                axios.put(`/books/${id}`,data).then(result =>{
+                    router.push("/books");
+                    context.commit(BOOK_FORM.MUTATIONS.CLEAR_FORM);
+                    resolve();
+                }).catch(err =>{
+                    reject(err.response.data);
+                });
+            });
+            
+        },
         [BOOK_FORM.ACTIONS.OPEN_EDIT_FORM] : (context,id) => {
             axios.get(`/books/${id}`).then(result =>{
                 context.commit(BOOK_FORM.MUTATIONS.SET_BOOK_DATA , result.data);
+                context.state.isEdit = true;
                 router.push("/books/form");
             });
         }

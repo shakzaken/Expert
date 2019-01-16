@@ -35,7 +35,7 @@
         <el-button 
             class="save-button" 
             type="info" plain round 
-            @click="createBook">
+            @click="saveBook">
                 Save
         </el-button>
     </div>
@@ -64,7 +64,7 @@ export default {
         },  
         description:{
             get(){
-                return this.$store.getters[BOOK_FORM.GETTERS.description];
+                return this.$store.getters[BOOK_FORM.GETTERS.DESCRIPTION];
             },
             set(description){
                 this.$store.commit(BOOK_FORM.MUTATIONS.SET_DESCRIPTION,description);
@@ -72,7 +72,7 @@ export default {
         },
         imageUrl:{
             get(){
-                return this.$store.getters[BOOK_FORM.GETTERS.imageUrl];
+                return this.$store.getters[BOOK_FORM.GETTERS.IMAGE_URL];
             }, 
             set(imageUrl){
                 this.$store.commit(BOOK_FORM.MUTATIONS.SET_IMAGE_URL,imageUrl);
@@ -91,13 +91,23 @@ export default {
         },
         formData(){
             return this.$store.getters[BOOK_FORM.GETTERS.FORM_DATA];
+        },
+        saveAction(){
+            if(this.isEditState){
+                return BOOK_FORM.ACTIONS.UPDATE_BOOK;
+            }else{
+                return BOOK_FORM.ACTIONS.CREATE_BOOK;
+            }
+        },
+        isEditState(){
+            return this.$store.getters[BOOK_FORM.GETTERS.IS_EDIT];
         }
     },
     methods:{
-        createBook(){       
+        saveBook(){ 
             this.$refs["bookForm"].validate(valid =>{
                 if(valid){
-                    this.$store.dispatch(BOOK_FORM.ACTIONS.SAVE_BOOK)
+                    this.$store.dispatch(this.saveAction)
                     .catch(errData => {
                         if(errData.type === "name"){
                             this.$message.error(errData.message);

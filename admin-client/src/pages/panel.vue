@@ -40,6 +40,7 @@ export default {
       margin-top: 5rem;
       flex:5;
       padding-bottom: 10rem;
+      min-height: 80vh;
     }
     .sidebar-container{
       flex:1; 

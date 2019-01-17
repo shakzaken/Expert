@@ -32,13 +32,14 @@
             <el-table-column
                 label="Operations">
                 <template slot-scope="scope">
+                    <router-link :to="`/books/form/${scope.row._id}`">
+                        <el-button size="mini">Edit</el-button>
+                    </router-link>
                     <el-button
-                    size="mini"
-                    @click="handleEdit(scope.row._id)">Edit</el-button>
-                    <el-button
-                    size="mini"
-                    type="danger"
-                    @click="handleDelete(scope.row._id)">Delete</el-button>
+                        size="mini"
+                        type="danger"
+                        @click="handleDelete(scope.row._id)">Delete
+                    </el-button>
                 </template>
             </el-table-column>
         </el-table>

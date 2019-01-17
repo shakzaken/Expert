@@ -49,6 +49,12 @@ export default {
     name:"BookForm",
     created(){
         this.$store.dispatch(BOOK_FORM.ACTIONS.FETCH_CATEGORIES);
+        if(this.isEditState){
+            this.$store.dispatch(BOOK_FORM.ACTIONS.OPEN_EDIT_FORM,this.$route.params.id);
+        }
+    },
+    destroyed(){
+        this.$store.commit(BOOK_FORM.MUTATIONS.CLEAR_FORM);
     },
     computed:{
         rules(){
@@ -100,7 +106,7 @@ export default {
             }
         },
         isEditState(){
-            return this.$store.getters[BOOK_FORM.GETTERS.IS_EDIT];
+            return this.$route.params.id ? true : false;
         }
     },
     methods:{
@@ -109,7 +115,7 @@ export default {
                 if(valid){
                     this.$store.dispatch(this.saveAction)
                     .catch(errData => {
-                        if(errData.type === "name"){
+                        if(errData.type){
                             this.$message.error(errData.message);
                         }
                     });

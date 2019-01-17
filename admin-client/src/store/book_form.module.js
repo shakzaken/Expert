@@ -9,8 +9,7 @@ export default {
         description: '',
         imageUrl: '',
         categoryId: '',
-        categories: [],
-        isEdit: false
+        categories: []
     },
     getters:{
         [BOOK_FORM.GETTERS.NAME] : (state) => {
@@ -35,9 +34,6 @@ export default {
                 imageUrl: state.imageUrl,
                 categoryId: state.categoryId  
               };
-        },
-        [BOOK_FORM.GETTERS.IS_EDIT] : (state) => {
-            return state.isEdit;
         },
         [BOOK_FORM.GETTERS.RULES] : () => {
             
@@ -83,9 +79,6 @@ export default {
             state.imageUrl = book.imageUrl;
             state.categoryId = book.categoryId;
             state.id = book._id
-        },
-        [BOOK_FORM.MUTATIONS.SET_EDIT_STATE] : (state) => {
-            state.isEdit = true;
         },
         [BOOK_FORM.MUTATIONS.CLEAR_FORM] : (state) => {
             state.name = '',
@@ -140,7 +133,6 @@ export default {
         [BOOK_FORM.ACTIONS.OPEN_EDIT_FORM] : (context,id) => {
             axios.get(`/books/${id}`).then(result =>{
                 context.commit(BOOK_FORM.MUTATIONS.SET_BOOK_DATA , result.data);
-                context.state.isEdit = true;
                 router.push("/books/form");
             });
         }

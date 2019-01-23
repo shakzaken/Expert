@@ -93,7 +93,7 @@ export default {
                 context.commit(BOOK_FORM.MUTATIONS.SET_CATEGORIES,result.data);
             }); 
         },
-        [BOOK_FORM.ACTIONS.SAVE_BOOK] : (context) => {
+        [BOOK_FORM.ACTIONS.CREATE_BOOK] : (context) => {
             const data = {
               name: context.state.name,
               description: context.state.description,
@@ -133,7 +133,6 @@ export default {
         [BOOK_FORM.ACTIONS.OPEN_EDIT_FORM] : (context,id) => {
             axios.get(`/books/${id}`).then(result =>{
                 context.commit(BOOK_FORM.MUTATIONS.SET_BOOK_DATA , result.data);
-                router.push("/books/form");
             });
         }
     }

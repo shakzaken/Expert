@@ -20,11 +20,6 @@
                 width="180">
             </el-table-column>
             <el-table-column 
-                prop="categoryId"
-                label="Category Id"
-                width="180">
-            </el-table-column>
-            <el-table-column 
                 prop="date"
                 label="Date"
                 width="180">
@@ -49,6 +44,7 @@
 <script>
 import {BOOKS,BOOK_FORM} from "../../store/types";
 import {Button , Alert} from 'element-ui';
+
 
 export default {
     name: "BooksList",

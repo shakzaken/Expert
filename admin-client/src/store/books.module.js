@@ -1,5 +1,7 @@
 import  {BOOKS} from "./types";
 import axios from "axios";
+import moment from "moment";
+import _ from "lodash";
 
 
 export default {
@@ -9,6 +11,13 @@ export default {
     },
     getters:{
         [BOOKS.GETTERS.LIST] : (state) => {
+            let booksUI = [];
+            state.books.forEach(book =>{
+                let bookUI = _.clone(book);
+                book.date = moment(book.date).format("DD/MM/YYYY");  
+                booksUI.push(bookUI);
+                return bookUI;      
+            });
             return state.books;
         }
     },

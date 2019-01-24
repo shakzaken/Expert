@@ -1,5 +1,5 @@
 
-import {UsersList} from "./pages/users";
+import {UsersList,UsersForm} from "./pages/users";
 import {BooksList,BookForm} from "./pages/books";
 import {CategoriesList,CategoryForm} from "./pages/categories";
 import {LoginPage} from "./pages/auth";
@@ -10,6 +10,7 @@ Vue.use(VueRouter);
 
 
 const routes = [
+    { path: "/users/form", component: UsersForm },
     { path: "/users", component: UsersList },
     { path: "/books/form/:id", component: BookForm},
     { path: "/books/form", component: BookForm},

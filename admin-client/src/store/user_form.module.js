@@ -16,6 +16,12 @@ export default {
         [USERS_FORM.GETTERS.EMAIL] : (state) => {
             return state.email;
         },
+        [USERS_FORM.GETTERS.PASSWORD] : (state) => {
+            return state.passowrd;
+        },
+        [USERS_FORM.GETTERS.CONFIRM_PASSWORD] : (state) => {
+            return state.confirmPassword;
+        },
         [USERS_FORM.GETTERS.RULES] : (state) => {
             // TODO 
             return {
@@ -38,6 +44,9 @@ export default {
         },
         [USERS_FORM.MUTATIONS.SET_PASSWORD] : (state, password) => {
             state.password = password;
+        },
+        [USERS_FORM.MUTATIONS.SET_CONFIRM_PASSOWRD] : (state,confirmPassowrd) => {
+            state.confirmPassword = confirmPassowrd;
         },
         [USERS_FORM.MUTATIONS.CLEAR_FORM] : (state) => {
             state.name = '';

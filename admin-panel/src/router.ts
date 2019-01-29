@@ -1,21 +1,31 @@
 
-import VueRouter, {RouterOptions,RouteConfig} from 'vue-router';
-import {Component} from 'vue';
+import VueRouter, {RouteConfig} from 'vue-router';
+import { UsersList } from "../src/components/users";
+import { BooksList } from "../src/components/books";
+import { CategoriesList } from "../src/components/categories";
 
 
-
-const routerOptions :RouterOptions = {
-
-};
 
 const routes : Array<RouteConfig> = [
 	{
-		name: '',
-		path: ''
+		path: "/categoriesy",
+		component: CategoriesList
 	},
 	{
-		name: '',
-		path: ''
-
-	}
+		path: "/books",
+		component: BooksList
+	},
+	{
+		path: "/users",
+		component: UsersList	
+	}	
+	
 ];
+
+
+
+const vueRouter: VueRouter = new VueRouter({
+	routes: routes
+});
+
+export default vueRouter;

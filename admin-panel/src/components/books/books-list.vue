@@ -6,10 +6,15 @@
 
 
 <script lang="ts">
-import Vue, {Component} from 'vue'
-export default Vue.extend({
+
+import Vue from 'vue';
+import Component from 'vue-class-component';
+
+@Component
+export default class BooksList extends Vue {
 	
-});
+}
+
 </script>
 
 

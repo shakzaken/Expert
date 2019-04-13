@@ -1,79 +1,41 @@
 <template>
-    <div class="category-form-container">
-        <h4 class="header">Category Form</h4>
-        <el-form 
-            :model="form" 
-            :rules="rules" 
-            ref="categoryForm" 
-            label-width="120px"
-            class="category-form">
-                <el-form-item label="Name" prop="name">
-                    <el-input v-model="name"></el-input>
-                </el-form-item>
-        </el-form>
-        <el-button 
-            class="save-button" 
-            type="info" plain round 
-            @click="createCategory">
-                Save
+    <form-group header="Category Form">
+		<input-group label="Name">
+			<input-text :path="CATEGORY_FORM.NAME"/>
+		</input-group>
+        <el-button class="save-button" type="info" plain round @click="createCategory">
+            Save      
         </el-button>
-    </div>
+    </form-group>
 </template>
 
 
 <script>
 import {CATEGORY_FORM} from "../../store/types";
 import {ERROR_STATUS} from "../../constants";
+import {FormGroup,InputGroup,InputText} from "../../components";
 
 export default {
-    name:"CategoryForm",
+	name:"CategoryForm",
+	components:{
+		InputGroup,InputText,FormGroup
+	},
     computed:{
-        rules(){
-            return this.$store.getters[CATEGORY_FORM.GETTERS.RULES];
-        },
-        name:{
-            get() {
-                return this.$store.getters[CATEGORY_FORM.GETTERS.NAME];
-            },
-            set(name) {
-                this.$store.commit(CATEGORY_FORM.MUTATIONS.NAME,name);
-            }
-        },
-        form(){
-            return this.$store.getters[CATEGORY_FORM.GETTERS.FORM];
-        }
+        CATEGORY_FORM(){
+			return CATEGORY_FORM;
+		}  
     },
     methods:{
         createCategory(){       
-            this.$refs["categoryForm"].validate(valid =>{
-                if(valid){
-                    this.$store.dispatch(CATEGORY_FORM.ACTIONS.CREATE_CATEGORY)
-                    .catch(errData => {
-                        if(errData.type === "name"){
-                            this.$message.error(errData.message);
-                        }
-                    });
-                }
-            });
-            
+			/*
+			TODO Create category
+			*/
+			console.log("Create Category");
         }
     }
 }
 </script>
 
-<style lang="scss" scoped>
-   
-    .category-form{
-        width:50%;
-    }
-    .header{
-        margin-bottom: 30px;
-        margin-left:100px;
-    }
-    .save-button{
-        display: inline-block;
-        margin-left:30%;
-    }
-</style>
+
 
 

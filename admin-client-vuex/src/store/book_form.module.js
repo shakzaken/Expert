@@ -12,65 +12,36 @@ export default {
         categories: []
     },
     getters:{
-        [BOOK_FORM.GETTERS.NAME] : (state) => {
+        [BOOK_FORM.NAME] : (state) => {
             return state.name;
         },
-        [BOOK_FORM.GETTERS.DESCRIPTION] : (state) => {
+        [BOOK_FORM.DESCRIPTION] : (state) => {
             return state.description;
         },
-        [BOOK_FORM.GETTERS.IMAGE_URL] : (state) => {
+        [BOOK_FORM.IMAGE_URL] : (state) => {
             return state.imageUrl;
         },
-        [BOOK_FORM.GETTERS.CATEGORY_ID] : (state) => {
+        [BOOK_FORM.CATEGORY_ID] : (state) => {
             return state.categoryId;
         },
-        [BOOK_FORM.GETTERS.CATEGORIES] : (state) => {
+        [BOOK_FORM.CATEGORIES] : (state) => {
             return state.categories;
-        },
-        [BOOK_FORM.GETTERS.FORM_DATA] : (state) =>{
-            return {
-                name: state.name,
-                description: state.description,
-                imageUrl: state.imageUrl,
-                categoryId: state.categoryId  
-              };
-        },
-        [BOOK_FORM.GETTERS.RULES] : () => {
-            
-            return {
-                name: [
-                    { required: true, message: 'Please input book name', trigger: 'blur' },
-                    { min: 3, max: 255, message: 'Name length should be 3 to 255', trigger: 'blur' }
-                  ],
-                description: [
-                    { required: true, message: 'Please input book description', trigger: 'blur' },
-                    { min: 5, max: 512, message: 'Description length should be 5 to 512', trigger: 'blur' }
-                ],
-                imageUrl: [
-                    { required: true, message: 'Please input image url', trigger: 'blur' },
-                    { min: 5, max: 512, message: 'Image url length should be 5 to 512', trigger: 'blur' },
-                    { type: 'url', message: 'Please enter a valid url', trigger: 'blur' }
-                ],
-                categoryId: [
-                    { required: true, message: 'Please input Category', trigger: 'change' }  
-                ]
-            };
         }
     },
     mutations:{
-        [BOOK_FORM.MUTATIONS.SET_NAME] : (state,name) => {
+        [BOOK_FORM.NAME] : (state,name) => {
             state.name = name;
         },
-        [BOOK_FORM.MUTATIONS.SET_DESCRIPTION] : (state,description) => {
+        [BOOK_FORM.DESCRIPTION] : (state,description) => {
             state.description = description;
         },
-        [BOOK_FORM.MUTATIONS.SET_IMAGE_URL] : (state,imageUrl) => {
+        [BOOK_FORM.IMAGE_URL] : (state,imageUrl) => {
             state.imageUrl = imageUrl;
         },
-        [BOOK_FORM.MUTATIONS.SET_CATEGORY_ID] : (state,categoryId) => {
+        [BOOK_FORM.CATEGORY_ID] : (state,categoryId) => {
             state.categoryId = categoryId;
         },
-        [BOOK_FORM.MUTATIONS.SET_CATEGORIES] : (state,categories) => {
+        [BOOK_FORM.MUTATIONS.CATEGORIES] : (state,categories) => {
             state.categories = categories;
         },
         [BOOK_FORM.MUTATIONS.SET_BOOK_DATA] : (state,book) => {

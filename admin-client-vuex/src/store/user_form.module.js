@@ -10,23 +10,17 @@ export default {
         password: ''
     },
     getters:{
-        [USERS_FORM.GETTERS.NAME] : (state) => {
+        [USERS_FORM.NAME] : (state) => {
             return state.name;
         },
-        [USERS_FORM.GETTERS.EMAIL] : (state) => {
+        [USERS_FORM.EMAIL] : (state) => {
             return state.email;
         },
-        [USERS_FORM.GETTERS.PASSWORD] : (state) => {
+        [USERS_FORM.PASSWORD] : (state) => {
             return state.passowrd;
         },
-        [USERS_FORM.GETTERS.CONFIRM_PASSWORD] : (state) => {
+        [USERS_FORM.CONFIRM_PASSWORD] : (state) => {
             return state.confirmPassword;
-        },
-        [USERS_FORM.GETTERS.RULES] : (state) => {
-            // TODO 
-            return {
-
-            };
         },
         [USERS_FORM.GETTERS.FORM_DATA] : (state) => {
             return {
@@ -36,16 +30,16 @@ export default {
         }
     },
     mutations:{
-        [USERS_FORM.MUTATIONS.SET_NAME] : (state, name) => {
+        [USERS_FORM.NAME] : (state, name) => {
             state.name = name;
         },
-        [USERS_FORM.MUTATIONS.SET_EMAIL] : (state, email) => {
+        [USERS_FORM.EMAIL] : (state, email) => {
             state.email = email;
         },
-        [USERS_FORM.MUTATIONS.SET_PASSWORD] : (state, password) => {
+        [USERS_FORM.PASSWORD] : (state, password) => {
             state.password = password;
         },
-        [USERS_FORM.MUTATIONS.SET_CONFIRM_PASSOWRD] : (state,confirmPassowrd) => {
+        [USERS_FORM.CONFIRM_PASSOWRD] : (state,confirmPassowrd) => {
             state.confirmPassword = confirmPassowrd;
         },
         [USERS_FORM.MUTATIONS.CLEAR_FORM] : (state) => {

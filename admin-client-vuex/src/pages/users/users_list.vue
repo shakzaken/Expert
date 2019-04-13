@@ -39,9 +39,6 @@ export default {
 </script>
 
 
-
-
-
 <style lang="scss" scoped>
 
   .users-list{

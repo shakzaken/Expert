@@ -40,18 +40,15 @@ export default class App extends Vue {}
 	html {
 		font-size: 62.5%;
 	}
-	body{
-		box-sizing: border-box;
-	}
+	
 
 	* {
+		box-sizing:  border-box;
 		padding: 0;
 		margin: 0; 
 	}
 
-	.navbar {
-		height: 70px;
-	}
+	
 	.app-body {
 		display: flex;
 		.sidebar {
@@ -60,6 +57,7 @@ export default class App extends Vue {}
 		}
 		.home {
 			flex: 5;
+			padding: 2rem 4rem;
 		}
 	}
 </style>

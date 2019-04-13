@@ -10,6 +10,11 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.120",
+    "axios": "^0.18.0",
+    "element-ui": "^2.5.2",
+    "lodash": "^4.17.11",
+    "mobx": "^5.9.0",
     "mobx-vue": "^2.0.8",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",

@@ -1,61 +1,46 @@
-import {BOOK_FORM} from "./types";
+import {BOOK_FORM} from "../types";
 import axios from "axios";
-import router from "../router";
+import router from "../../router";
+import {mapFieldGetters,mapFieldsMutations} from "../../services/field/field";
+import {setBookDataFromServer, clearBookForm} from "./books.services";
+const FIELDS = ['id','name','description','imageUrl','categoryId','categories'];
 
 export default {
+	namespaced:true,
     state: {
         id: '',
-        name : '',
-        description: '',
-        imageUrl: '',
-        categoryId: '',
+        name : {
+			value:'',
+			dirty:false,
+			validators:[]
+		},
+        description: {
+			value:'',
+			dirty:false,
+			validators:[]
+		},
+        imageUrl: {
+			value:'',
+			dirty:false,
+			validators:[]
+		},
+        categoryId: {
+			value:'',
+			dirty:false,
+			validators:[]
+		},
         categories: []
     },
     getters:{
-        [BOOK_FORM.NAME] : (state) => {
-            return state.name;
-        },
-        [BOOK_FORM.DESCRIPTION] : (state) => {
-            return state.description;
-        },
-        [BOOK_FORM.IMAGE_URL] : (state) => {
-            return state.imageUrl;
-        },
-        [BOOK_FORM.CATEGORY_ID] : (state) => {
-            return state.categoryId;
-        },
-        [BOOK_FORM.CATEGORIES] : (state) => {
-            return state.categories;
-        }
+		...mapFieldGetters(FIELDS),
     },
     mutations:{
-        [BOOK_FORM.NAME] : (state,name) => {
-            state.name = name;
+		...mapFieldsMutations(FIELDS),
+        setBookDataFromServer : (state,book) => {
+            setBookDataFromServer(state,book);
         },
-        [BOOK_FORM.DESCRIPTION] : (state,description) => {
-            state.description = description;
-        },
-        [BOOK_FORM.IMAGE_URL] : (state,imageUrl) => {
-            state.imageUrl = imageUrl;
-        },
-        [BOOK_FORM.CATEGORY_ID] : (state,categoryId) => {
-            state.categoryId = categoryId;
-        },
-        [BOOK_FORM.MUTATIONS.CATEGORIES] : (state,categories) => {
-            state.categories = categories;
-        },
-        [BOOK_FORM.MUTATIONS.SET_BOOK_DATA] : (state,book) => {
-            state.name = book.name;
-            state.description = book.description;
-            state.imageUrl = book.imageUrl;
-            state.categoryId = book.categoryId;
-            state.id = book._id
-        },
-        [BOOK_FORM.MUTATIONS.CLEAR_FORM] : (state) => {
-            state.name = '',
-            state.description = '',
-            state.imageUrl = '',
-            state.categoryId = ''
+        clearForm : (state) => {
+            clearBookForm(state)
         }
     },
     actions:{

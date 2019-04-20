@@ -9,26 +9,10 @@ export default {
 	namespaced:true,
     state: {
         id: '',
-        name : {
-			value:'',
-			dirty:false,
-			validators:[]
-		},
-        description: {
-			value:'',
-			dirty:false,
-			validators:[]
-		},
-        imageUrl: {
-			value:'',
-			dirty:false,
-			validators:[]
-		},
-        categoryId: {
-			value:'',
-			dirty:false,
-			validators:[]
-		},
+        name: '',
+        description:'',
+        imageUrl: '',
+        categoryId: '',
         categories: []
     },
     getters:{
@@ -44,17 +28,17 @@ export default {
         }
     },
     actions:{
-        [BOOK_FORM.ACTIONS.FETCH_CATEGORIES] : (context) => {
+        fetchCategories : (context) => {
             axios.get("/categories").then(result =>{
                 context.commit(BOOK_FORM.MUTATIONS.SET_CATEGORIES,result.data);
-            }); 
+            });
         },
-        [BOOK_FORM.ACTIONS.CREATE_BOOK] : (context) => {
+        createBook : (context) => {
             const data = {
               name: context.state.name,
               description: context.state.description,
               imageUrl: context.state.imageUrl,
-              categoryId: context.state.categoryId  
+              categoryId: context.state.categoryId
             };
             return new Promise((resolve,reject) => {
                 axios.post("/books",data).then(result =>{
@@ -65,15 +49,15 @@ export default {
                     reject(err.response.data);
                 });
             });
-            
+
         },
-        [BOOK_FORM.ACTIONS.UPDATE_BOOK] : (context) => {
+        updateBook : (context) => {
             const id = context.state.id;
             const data = {
               name: context.state.name,
               description: context.state.description,
               imageUrl: context.state.imageUrl,
-              categoryId: context.state.categoryId  
+              categoryId: context.state.categoryId
             };
             return new Promise((resolve,reject) => {
                 axios.put(`/books/${id}`,data).then(result =>{
@@ -84,7 +68,7 @@ export default {
                     reject(err.response.data);
                 });
             });
-            
+
         },
         [BOOK_FORM.ACTIONS.OPEN_EDIT_FORM] : (context,id) => {
             axios.get(`/books/${id}`).then(result =>{

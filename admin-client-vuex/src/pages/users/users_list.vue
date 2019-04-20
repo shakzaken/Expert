@@ -7,12 +7,12 @@
             </div>
         </div>
         <el-table :data="users">
-            <el-table-column 
+            <el-table-column
                 prop="name"
                 label="Name"
                 width="180">
             </el-table-column>
-            <el-table-column 
+            <el-table-column
                 prop="email"
                 label="Email"
                 width="180">
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import {USERS} from "../../store/types.js";
+import {USERS} from "../../store/types";
 
 export default {
   name:"UsersList",
@@ -32,9 +32,9 @@ export default {
   computed:{
       users(){
         return this.$store.getters[USERS.GETTERS.LIST];
-      }   
+      }
   }
-   
+
 }
 </script>
 
@@ -44,9 +44,9 @@ export default {
   .users-list{
         &-header{
             display: flex;
-            margin-bottom: 30px; 
+            margin-bottom: 30px;
         }
-        &-title{  
+        &-title{
             flex:1;
             padding-left: 50px;
             padding-top: 10px;

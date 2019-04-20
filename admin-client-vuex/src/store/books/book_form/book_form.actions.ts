@@ -1,7 +1,7 @@
 import axios from "axios";
 import router from "../../../router";
 import {ActionTree} from "vuex";
-import {BookFormState} from "./book_form.module";
+import {BookFormState} from "../../types";
 import {RootState} from "../../store";
 
 
@@ -10,7 +10,11 @@ export const actions : ActionTree<BookFormState,RootState> = {
 	
 	fetchCategories : (context) => {
 		axios.get("/categories").then(result =>{
-			context.commit("categories",result.data);
+			const categories = result.data.map(category => ({
+				id: category._id,
+				name: category.name
+			}));
+			context.commit("categories",categories);
 		});
 	},
 

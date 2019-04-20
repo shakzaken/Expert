@@ -1,6 +1,6 @@
 import {mapFieldsMutations} from "../../../services/field/field";
 import {MutationTree} from "vuex";
-import {FIELDS,BookFormState} from "./book_form.module";
+import {BOOK_FORM_FIELDS as FIELDS,BookFormState} from "../../types";
 
 
 export const mutations : MutationTree<BookFormState> = {
@@ -17,6 +17,6 @@ export const mutations : MutationTree<BookFormState> = {
 		state.description = '';
 		state.imageUrl = '';
 		state.categoryId = '';
-		state.id = null;
+		state.id = '';
 	}
 }

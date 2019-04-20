@@ -1,6 +1,8 @@
 <template>
 	<div class="input-group">
-		<label>{{label}}</label>
+		<div>
+			<label>{{label}}</label>
+		</div>
 		<slot></slot>
 	</div>
 </template>

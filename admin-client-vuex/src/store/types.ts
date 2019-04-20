@@ -1,5 +1,30 @@
 
 
+
+export const BOOK_FORM_FIELDS = ['id','name','description','imageUrl','categoryId','categories'];
+
+
+
+export interface BookFormState {
+	id: string;
+	name: string;
+	description: string;
+	imageUrl: string;
+	categoryId: string;
+	categories: string[];
+}
+
+
+
+
+
+
+
+
+
+
+
+
 export const USERS =  {
 
   GETTERS:{

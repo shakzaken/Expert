@@ -8,7 +8,10 @@
 				<input-text path="bookForm/description" />
 			</input-group>
 			<input-group label="Category">
-				<input-text path="bookForm/categoryId" />
+				<select-input
+					path="bookForm/categoryId"
+					:options="categories"
+				/>
 			</input-group>
 			<input-group label="Image Url">
 				<input-text path="bookForm/imageUrl" />
@@ -23,25 +26,25 @@
 <script>
 import {BOOK_FORM} from "../../store/types";
 import {ERROR_STATUS} from "../../constants";
-import {InputGroup,InputText,FormGroup} from "../../components";
+import {InputGroup,InputText,FormGroup,SelectInput} from "../../components";
 
 export default {
 	name:"BookForm",
 	components:{
-		InputText,InputGroup,FormGroup
+		InputText,InputGroup,FormGroup,SelectInput
 	},
 	computed:{
-		BOOK_FORM(){
-			return BOOK_FORM;
+		categories(){
+			return this.$store.getters["bookForm/categories"];
 		}
 	},
 	methods:{
 		saveBook(){
-			/*
-			TODO 
-			*/
 			this.$store.dispatch("bookForm/createBook");
 		}
+	},
+	created(){
+		this.$store.dispatch("bookForm/fetchCategories");
 	}
 }
 </script>

@@ -11,8 +11,8 @@ export function mapFieldGetters(fields){
 export function mapFieldsMutations(fields){
 	let fieldsMutations = {};
 	fields.forEach(field =>{
-		fieldsMutations[field] = (state) =>{
-			state[field] = field;	
+		fieldsMutations[field] = (state,value) =>{
+			state[field] = value;	
 		};
 	});
 	return fieldsMutations;

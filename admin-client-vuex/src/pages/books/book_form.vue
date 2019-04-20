@@ -2,16 +2,16 @@
     <form-group header="Book Form">
         <div class="book-form">
 			<input-group label="Name">
-				<input-text :path="BOOK_FORM.NAME" />
+				<input-text path="bookForm/name" />
 			</input-group>
 			<input-group label="Description">
-				<input-text :path="BOOK_FORM.DESCRIPTION" />
+				<input-text path="bookForm/description" />
 			</input-group>
 			<input-group label="Category">
-				<input-text :path="BOOK_FORM.CATEGORY_ID" />
+				<input-text path="bookForm/categoryId" />
 			</input-group>
 			<input-group label="Image Url">
-				<input-text :path="BOOK_FORM.IMAGE_URL" />
+				<input-text path="bookForm/imageUrl" />
 			</input-group> 
 			<el-button class="save-button" type="info" plain round @click="saveBook">
                 Save
@@ -40,7 +40,7 @@ export default {
 			/*
 			TODO 
 			*/
-			console.log("Save book");
+			this.$store.dispatch("bookForm/createBook");
 		}
 	}
 }

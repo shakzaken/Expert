@@ -1,7 +1,7 @@
 <template>
     <form-group header="Category Form">
 		<input-group label="Name">
-			<input-text :path="CATEGORY_FORM.NAME"/>
+			<input-text path="categoryForm/name"/>
 		</input-group>
         <el-button class="save-button" type="info" plain round @click="createCategory">
             Save      
@@ -14,6 +14,7 @@
 import {CATEGORY_FORM} from "../../store/types";
 import {ERROR_STATUS} from "../../constants";
 import {FormGroup,InputGroup,InputText} from "../../components";
+import { mapActions } from 'vuex';
 
 export default {
 	name:"CategoryForm",
@@ -21,16 +22,11 @@ export default {
 		InputGroup,InputText,FormGroup
 	},
     computed:{
-        CATEGORY_FORM(){
-			return CATEGORY_FORM;
-		}  
+       
     },
     methods:{
         createCategory(){       
-			/*
-			TODO Create category
-			*/
-			console.log("Create Category");
+			this.$store.dispatch("categoryForm/createCategory");
         }
     }
 }

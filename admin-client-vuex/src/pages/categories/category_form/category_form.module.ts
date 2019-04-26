@@ -1,9 +1,9 @@
-import {CATEGORY_FORM} from "./types";
+
 import axios from "axios";
-import router from "../router";
-import ERROR_STATUS from "../constants/errors_status";
+import router from "@/router";
+import ERROR_STATUS from "@/constants/errors_status";
 import { Module } from "vuex";
-import { RootState } from './store';
+import { RootState } from '@/store';
 
 
 interface CategoryState {

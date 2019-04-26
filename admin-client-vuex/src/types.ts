@@ -1,8 +1,8 @@
 
 
 
-export const BOOK_FORM_FIELDS = ['id','name','description','imageUrl','categoryId','categories'];
-
+export const BOOK_FORM_FIELDS = ['name','description','imageUrl','categoryId','categories'];
+export const USER_FORM_FIELDS = ['name','email','password','confirmPassword'];
 
 
 export interface BookFormState {
@@ -17,7 +17,16 @@ export interface BookFormState {
 
 
 
-
+export interface User {
+	id:string;
+	name:string;
+	email:string;
+	passowrd: string;
+	confirmPassowrd?: string;
+}
+export interface UsersState {
+	users: User[];
+}
 
 
 
@@ -28,13 +37,13 @@ export interface BookFormState {
 export const USERS =  {
 
   GETTERS:{
-    LIST:         "USERS_GETTERS_LIST"
+    USERS:         "users/users"
   },
   MUTATIONS:{
-    SET_LIST:     "USERS_MUTATIONS_SET_LIST"
+    SET_LIST:     "users/users"
   },
   ACTIONS:{
-    FETCH_LIST:   "USERS_ACTIONS_FETCH_LIST"
+    FETCH_LIST:   "users/fetchUsers"
   }
 
 };
@@ -43,7 +52,7 @@ export const USERS =  {
 
 export const USERS_FORM = {
 
-	NAME:             "USERS_FORM_NAME",
+	NAME:             "users",
 	EMAIL:            "USERS_FORM_EMAIL",
 	RULES:            "USERS_FORM_RULES",
 	PASSWORD:         "USERS_FORM_PASSWORD",
@@ -70,14 +79,14 @@ export const USERS_FORM = {
 export const CATEGORIES = {
 
   GETTERS:{
-    LIST:         "CATEGORIES_GETTERS_LIST"
+    CATEGORIES:         "categories/categories"
   },
   MUTATIONS:{
-    SET_LIST:     "CATEGORIES_MUTATIONS_SET_LIST"
+    CATEGORIES:     "categories/categories"
   },
   ACTIONS:{
-    FETCH_LIST:   "CATEGORIES_ACTIONS_FETCH_LIST",
-    DELETE_CATEGORY: "CATEGORIES_ACTIONS_DELETE_CATEGORY"
+    FETCH_CATEGORIES:   "categories/fetchCategories",
+    DELETE_CATEGORY: "categories/deleteCategory"
   }
 };
 

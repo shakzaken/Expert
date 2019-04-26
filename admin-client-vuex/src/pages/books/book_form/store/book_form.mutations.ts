@@ -1,6 +1,6 @@
-import {mapFieldsMutations} from "../../../services/field/field";
+import {mapFieldsMutations} from "@/services/field/field";
 import {MutationTree} from "vuex";
-import {BOOK_FORM_FIELDS as FIELDS,BookFormState} from "../../types";
+import {BOOK_FORM_FIELDS as FIELDS,BookFormState} from "@/types";
 
 
 export const mutations : MutationTree<BookFormState> = {

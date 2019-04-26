@@ -1,11 +1,11 @@
 
 
 import {Module} from "vuex";
-import {RootState} from "../../store";
+import {RootState} from "@/store";
 import {actions} from "./book_form.actions";
 import {getters} from "./book_form.getters";
 import {mutations} from "./book_form.mutations";
-import {BookFormState} from "../../types";
+import {BookFormState} from "@/types";
 
 
 

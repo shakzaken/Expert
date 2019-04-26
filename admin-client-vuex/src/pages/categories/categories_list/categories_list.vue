@@ -36,15 +36,15 @@
 </template>
 
 <script>
-import {CATEGORIES} from "../../store/types";
+import {CATEGORIES} from "@/types";
 export default {
     name: "CategoriesList",
     created(){
-        this.$store.dispatch(CATEGORIES.ACTIONS.FETCH_LIST);
+        this.$store.dispatch(CATEGORIES.ACTIONS.FETCH_CATEGORIES);
     },
     computed:{
         categories(){
-            return this.$store.getters[CATEGORIES.GETTERS.LIST];
+            return this.$store.getters[CATEGORIES.GETTERS.CATEGORIES];
         }
     },
     methods:{

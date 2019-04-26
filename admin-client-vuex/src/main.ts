@@ -5,7 +5,7 @@ import router from "./router";
     Change Auth header
 */
 import useAxios from "./axios";
-import store from "./store/store";
+import store from "./store";
 import useElementUi from "./element_ui";
 
 useAxios();

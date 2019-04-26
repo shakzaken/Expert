@@ -28,7 +28,7 @@
                 label="Operations">
                 <template slot-scope="scope">
                     <router-link :to="`/books/form/${scope.row._id}`">
-                        <el-button size="mini">Edit</el-button>
+                        <el-button size="mini" @click="handleEdit(scope.row._id)">Edit</el-button>
                     </router-link>
                     <el-button
                         size="mini"
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import {BOOKS,BOOK_FORM} from "../../store/types";
+import {BOOKS,BOOK_FORM} from "@/types";
 import {Button , Alert} from 'element-ui';
 
 
@@ -63,7 +63,7 @@ export default {
             }
         },
         handleEdit(id){
-            this.$store.dispatch(BOOK_FORM.ACTIONS.OPEN_EDIT_FORM,id);
+            this.$store.dispatch("bookForm/editForm",id);
         }
     }
 }

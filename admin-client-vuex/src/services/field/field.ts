@@ -11,7 +11,9 @@ export function mapFieldGetters(fields){
 export function mapFieldsMutations(fields){
 	let fieldsMutations = {};
 	fields.forEach(field =>{
-		fieldsMutations[field] = (state,value) =>{
+		const firstLetter = field.charAt(0).toUpperCase();
+		const methodName = `set${firstLetter}${field.substr(1,field.length-1)}`;
+		fieldsMutations[methodName] = (state,value) =>{
 			state[field] = value;	
 		};
 	});

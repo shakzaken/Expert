@@ -22,16 +22,16 @@
 </template>
 
 <script>
-import {USERS} from "../../store/types";
+import {USERS} from "@/types";
 
 export default {
   name:"UsersList",
   created(){
-      this.$store.dispatch(USERS.ACTIONS.FETCH_LIST);
+      this.$store.dispatch("users/fetchList");
   },
   computed:{
       users(){
-        return this.$store.getters[USERS.GETTERS.LIST];
+        return this.$store.getters["users/users"];
       }
   }
 

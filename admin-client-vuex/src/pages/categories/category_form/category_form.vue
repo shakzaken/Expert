@@ -11,9 +11,9 @@
 
 
 <script>
-import {CATEGORY_FORM} from "../../store/types";
-import {ERROR_STATUS} from "../../constants";
-import {FormGroup,InputGroup,InputText} from "../../components";
+import {CATEGORY_FORM} from "@/types";
+import {ERROR_STATUS} from "@/constants";
+import {FormGroup,InputGroup,InputText} from "@/components";
 import { mapActions } from 'vuex';
 
 export default {

@@ -1,7 +1,7 @@
 <template>
 	<el-input
 		@change="setValue"
-		:value="getValue"	
+		:value="value"	
 	 />
 </template>
 
@@ -12,16 +12,11 @@
 export default {
 	name:"InputText",
 	props:{
-		path:String
-	},
-	computed:{
-		getValue(){
-			return this.$store.getters[this.path];
-		}
+		value: String
 	},
 	methods:{
 		setValue(value){
-			this.$store.commit(this.path,value);
+			this.$emit("input",value);
 		}
 	}
 

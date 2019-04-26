@@ -1,4 +1,4 @@
-import  {BOOKS} from "../types";
+import  {BOOKS} from "@/types";
 import axios from "axios";
 import moment from "moment";
 import _ from "lodash";

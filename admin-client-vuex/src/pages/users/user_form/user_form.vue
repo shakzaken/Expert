@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import {USERS_FORM} from "../../store/types";
-import {ERROR_STATUS} from "../../constants";
-import {FormGroup,InputGroup,InputText} from "../../components";
+import {USERS_FORM} from "@/types";
+import {ERROR_STATUS} from "@/constants";
+import {FormGroup,InputGroup,InputText} from "@/components";
 
 
 export default {
@@ -36,10 +36,7 @@ export default {
 	},
 	methods:{
 		saveUser(){
-			/*
-			TODO 
-			*/
-			console.log("SAVE user");
+			
 		}
 	}
 }

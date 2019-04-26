@@ -1,6 +1,6 @@
 <template>
 	<el-select 
-		:value="getValue"
+		:value="value"
 		@input="setValue"
 		placeholder="Select">
 		<el-option 
@@ -20,16 +20,11 @@ export default Vue.extend({
 	name:"selectInput",
 	props:{
 		options: Array,
-		path: String
-	},
-	computed:{
-		getValue(){
-			return this.$store.getters[this.path];
-		}
+		value:String
 	},
 	methods:{
 		setValue(value){
-			this.$store.commit(this.path,value);
+			this.$emit("input",value);
 		}
 	}
 });

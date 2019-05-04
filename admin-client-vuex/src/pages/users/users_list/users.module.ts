@@ -1,8 +1,7 @@
-import { USERS,User,UsersState } from "@/types";
-import axios from "axios";
+import { UserModel,UsersState,UserResource } from "@/types";
 import { Module } from "vuex";
 import { RootState } from "@/store";
-
+import {api} from "@/api/api";
 
 
 
@@ -17,15 +16,24 @@ export const UsersModule : Module<UsersState,RootState>  = {
         }
     },
     mutations:{
-        users(state,usersList){
+        setUsers(state,usersList){
             state.users = usersList;
         } 
     },
     actions:{
         async fetchUsers(context){
-            const result = await axios.get("/users");
-			context.commit("users",result.data);   
-        }
+			const users : UserResource[] = await api.users.getUsers();
+			context.commit("setUsers",users);   
+		},
+		async deleteUser({dispatch},id){
+			if(confirm("Are you sure you want to delete this user?")){
+				await api.users.deleteUser(id);
+				dispatch("fetchUsers");
+			}
+		},
+		async editUser({dispatch},id){
+			dispatch("userForm/editUser",id,{root:true});
+		}
     }
 
 };

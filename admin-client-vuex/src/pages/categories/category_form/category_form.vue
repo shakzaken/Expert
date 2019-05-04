@@ -1,7 +1,7 @@
 <template>
     <form-group header="Category Form">
 		<input-group label="Name">
-			<input-text path="categoryForm/name"/>
+			<input-text :value="name" @input="setName"/>
 		</input-group>
         <el-button class="save-button" type="info" plain round @click="createCategory">
             Save      
@@ -10,13 +10,16 @@
 </template>
 
 
-<script>
-import {CATEGORY_FORM} from "@/types";
+<script lang="ts">
 import {ERROR_STATUS} from "@/constants";
 import {FormGroup,InputGroup,InputText} from "@/components";
 import { mapActions } from 'vuex';
+import Vue from "vue";
+import {formMixin} from "@/mixins"
+import {CategoryFormModule} from "./category_form.module"; 
 
-export default {
+export default Vue.extend({
+	mixins:[formMixin("categoryForm",CategoryFormModule)],
 	name:"CategoryForm",
 	components:{
 		InputGroup,InputText,FormGroup
@@ -29,7 +32,7 @@ export default {
 			this.$store.dispatch("categoryForm/createCategory");
         }
     }
-}
+});
 </script>
 
 

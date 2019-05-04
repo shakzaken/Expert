@@ -1,17 +1,14 @@
 
-import axios from "axios";
 import router from "@/router";
-import ERROR_STATUS from "@/constants/errors_status";
 import { Module } from "vuex";
 import { RootState } from '@/store';
+import {CategoryFormState, CategoryResource, CategoryModel} from "@/types";
+import { api } from '@/api/api';
 
 
-interface CategoryState {
-	name: string;
-}
 
 
-export const CategoryFormModule: Module<CategoryState,RootState> = {
+export const CategoryFormModule: Module<CategoryFormState,RootState> = {
 	namespaced:true,
     state: {
         name: ""
@@ -19,10 +16,15 @@ export const CategoryFormModule: Module<CategoryState,RootState> = {
     getters:{
         name(state){
             return state.name;
-        }
+		},
+		categoryForServer(state) : CategoryResource {
+			return {
+				name: state.name
+			};
+		}
     },
     mutations:{
-        name(state,name){
+        setName(state,name){
             state.name = name;
         },
         clearForm(state){
@@ -30,8 +32,9 @@ export const CategoryFormModule: Module<CategoryState,RootState> = {
         }
     },
     actions:{
-        async createCategory({state,commit}){	
-			await axios.post("/categories",{ name: state.name });
+        async createCategory({commit,getters}){	
+			const category : CategoryModel = getters.categoryForServer;
+			await api.categories.createCategory(category);
 			router.push("/categories");
 			commit("clearForm");
         }    

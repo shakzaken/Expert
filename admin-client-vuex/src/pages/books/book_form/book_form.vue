@@ -25,14 +25,15 @@
 </template>
 
 <script lang="ts">
-import {BOOK_FORM,BOOK_FORM_FIELDS as FIELDS} from "@/types";
+import {BOOK_FORM_FIELDS as FIELDS} from "@/types";
 import {ERROR_STATUS} from "@/constants";
 import {InputGroup,InputText,FormGroup,SelectInput} from "@/components";
 import {mapGetters,mapMutations} from "vuex";
 import {formMixin} from "@/mixins/form.mixin";
-import {BookFormModule} from "./store/book_form.module";
+import {BookFormModule} from "./book_form.module";
+import Vue from "vue";
 
-export default {
+export default Vue.extend({
 	name:"BookForm",
 	mixins:[formMixin("bookForm",BookFormModule)],
 	components:{
@@ -45,8 +46,11 @@ export default {
 	
 	},
 	created(){
+		const editState : boolean = !!this.$route.params.id;
+		this.setEditState(editState);
 		this.fetchCategories();
+		
 	}
-}
+});
 </script>
 

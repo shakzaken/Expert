@@ -1,46 +1,45 @@
-import  {BOOKS} from "@/types";
-import axios from "axios";
+
 import moment from "moment";
 import _ from "lodash";
+import { Module } from 'vuex';
+import { RootState } from '@/store';
+import {BooksState, BookModel} from "@/types";
+import {api} from "@/api/api";
 
-
-export default {
-
+export const BooksModule : Module<BooksState,RootState> = {
+	namespaced:true,
     state:{
         books: []
     },
     getters:{
-        [BOOKS.GETTERS.LIST] : (state) => {
-            let booksUI = [];
-            state.books.forEach(book =>{
-                let bookUI = _.clone(book);
-                book.date = moment(book.date).format("DD/MM/YYYY");
-                booksUI.push(bookUI);
-                return bookUI;
-            });
-            return state.books;
+        books(state){
+			return state.books.map((book:BookModel) => ({
+				id:book.id,
+				name:book.name,
+				description: book.description,
+				date: moment(book.date).format("DD/MM/YYYY"),
+				categroyId: book.categoryId,
+				imageUrl: book.imageUrl
+			}));
         }
     },
     mutations:{
-        [BOOKS.MUTATIONS.SET_LIST] : (state,booksList) => {
+        setBooks(state,booksList : BookModel[]){
             state.books = booksList;
         }
     },
     actions:{
-        [BOOKS.ACTIONS.FETCH_LIST] : (context) => {
-            axios.get("/books").then(result =>{
-                context.commit(BOOKS.MUTATIONS.SET_LIST,result.data);
-            }).catch(err =>{
-                console.log(err);
-            });
+        async fetchBooks(context){
+			const books : BookModel[] = await api.books.getBooks();
+			context.commit("setBooks",books);
         },
-        [BOOKS.ACTIONS.DELETE_BOOK] : (context,id) => {
-            axios.delete(`/books/${id}`).then(result =>{
-                context.dispatch(BOOKS.ACTIONS.FETCH_LIST);
-            }).catch(err =>{
-                console.log(err);
-            });
-        }
+        async deleteBook({dispatch},id){
+			await api.books.deleteBook(id);
+			dispatch("fetchBooks");
+		},
+		async editBook(context,id){
+			context.dispatch("bookForm/editBook",id,{root:true});
+		}
 
     }
 }

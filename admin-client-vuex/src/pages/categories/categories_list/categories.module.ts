@@ -1,11 +1,8 @@
 
-import axios from 'axios';
 import {Module} from "vuex";
 import {RootState} from "@/store";
-
-interface CategoriesState {
-	categories: any[];
-}
+import {CategoriesState, CategoryModel} from "@/types";
+import {api} from "@/api/api"; 
 
 
 export const CategoriesModule : Module<CategoriesState,RootState> =  {
@@ -14,22 +11,22 @@ export const CategoriesModule : Module<CategoriesState,RootState> =  {
         categories: []
     },
     getters:{
-        categories(state){
+        categories(state) : CategoryModel[] {
             return state.categories;
         }
     },
     mutations:{
-        categories(state, categoriesList){
+        categories(state, categoriesList:CategoryModel[]){
             state.categories = categoriesList;
         }
     },
     actions:{
         async fetchCategories(context) {
-            const result = await axios.get("/categories");
-			await context.commit("categories",result.data);
+			const categories: CategoryModel[] = await api.categories.getCategories();
+			await context.commit("categories",categories);
         },
         async deleteCategory(context,id){
-            await axios.delete(`/categories/${id}`);
+			api.categories.deleteCategory(id);
 			context.dispatch("fetchCategories");
         }
     }

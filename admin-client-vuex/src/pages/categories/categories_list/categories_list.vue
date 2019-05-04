@@ -10,11 +10,6 @@
         </div>
         <el-table :data="categories">
             <el-table-column 
-                prop="_id"
-                label="ID"
-                width="250">
-            </el-table-column>
-            <el-table-column 
                 prop="name"
                 label="Name"
                 width="180">
@@ -22,29 +17,30 @@
                <el-table-column
                     label="Operations">
                     <template slot-scope="scope">
+                    
                         <el-button
-                        size="mini"
-                        @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-                        <el-button
-                        size="mini"
-                        type="danger"
-                        @click="handleDelete(scope.row._id)">Delete</el-button>
+							size="mini"
+							type="danger"
+							@click="handleDelete(scope.row.id)">Delete
+						</el-button>
                     </template>
                 </el-table-column>
         </el-table>
   </div>
 </template>
 
-<script>
-import {CATEGORIES} from "@/types";
-export default {
+<script lang="ts">
+import Vue from "vue";
+import {} from "@/types";
+
+export default Vue.extend({
     name: "CategoriesList",
     created(){
-        this.$store.dispatch(CATEGORIES.ACTIONS.FETCH_CATEGORIES);
+        this.$store.dispatch("categories/fetchCategories");
     },
     computed:{
         categories(){
-            return this.$store.getters[CATEGORIES.GETTERS.CATEGORIES];
+            return this.$store.getters["categories/categories"];
         }
     },
     methods:{
@@ -53,11 +49,11 @@ export default {
         },
         handleDelete(id){
             if(confirm("Are you sure you want to delete this category")){
-                this.$store.dispatch(CATEGORIES.ACTIONS.DELETE_CATEGORY,id);
+                this.$store.dispatch("categories/deleteCategory",id);
             }
         }
     }
-}
+});
 </script>
 
 

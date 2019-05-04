@@ -4,14 +4,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import panel from "./pages/panel.vue";
-export default {
+import Vue from "vue";
+
+export default Vue.extend({
   name: 'app',
   components: {
     panel
   }
-}
+})
 </script>
 
 <style>

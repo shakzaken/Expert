@@ -27,13 +27,13 @@
             <el-table-column
                 label="Operations">
                 <template slot-scope="scope">
-                    <router-link :to="`/books/form/${scope.row._id}`">
-                        <el-button size="mini" @click="handleEdit(scope.row._id)">Edit</el-button>
+                    <router-link :to="`/books/form/${scope.row.id}`">
+                        <el-button size="mini" @click="()=>editBook(scope.row.id)">Edit</el-button>
                     </router-link>
                     <el-button
                         size="mini"
                         type="danger"
-                        @click="handleDelete(scope.row._id)">Delete
+                        @click="()=>handleDelete(scope.row.id)">Delete
                     </el-button>
                 </template>
             </el-table-column>
@@ -41,32 +41,26 @@
   </div>
 </template>
 
-<script>
-import {BOOKS,BOOK_FORM} from "@/types";
+<script lang="ts">
 import {Button , Alert} from 'element-ui';
+import {formMixin} from "@/mixins";
+import {BooksModule} from "@/pages/books/books_list/books.module";
+import Vue from "vue";
 
-
-export default {
-    name: "BooksList",
+export default Vue.extend({
+	name: "BooksList",
+	mixins:[formMixin("books",BooksModule)],
     created(){
-        this.$store.dispatch(BOOKS.ACTIONS.FETCH_LIST);
-    },
-    computed:{
-        books(){
-            return this.$store.getters[BOOKS.GETTERS.LIST];
-        }
+        this.fetchBooks();
     },
     methods:{
         handleDelete(id){
             if(confirm("Are you sure you want to delete this book?")){
-               this.$store.dispatch(BOOKS.ACTIONS.DELETE_BOOK,id); 
+               this.deleteBook(id);
             }
-        },
-        handleEdit(id){
-            this.$store.dispatch("bookForm/editForm",id);
         }
     }
-}
+});
 </script>
 
 

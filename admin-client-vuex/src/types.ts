@@ -48,14 +48,7 @@ export interface BookResource {
 */
 
 
-export interface UserFormState {
-	id:string;
-	name:string;
-	email:string;
-	password:string;
-	confirmPassword:string;
-	editState:boolean;
-}
+
 
 export interface UsersState {
 	users: UserModel[];

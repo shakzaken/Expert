@@ -21,7 +21,7 @@ export const store : StoreOptions<RootState> = new Vuex.Store({
 		users: UsersModule,
 		userForm: UserFormModule,
 		books: BooksModule,
-		bookForm : BookFormModule,
+//		bookForm : BookFormModule,
 		categories: CategoriesModule,
 		categoryForm : CategoryFormModule
 	}

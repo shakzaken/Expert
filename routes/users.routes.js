@@ -14,6 +14,11 @@ router.get("/",asyncMiddleware(async (req,res) =>{
     res.send(users);
 }));
 
+router.get("/:id",asyncMiddleware(async (req,res) =>{
+    const user = await UserModel.findById(req.params.id);
+    res.send(user);
+}));
+
 router.post("/",asyncMiddleware(async (req,res) => {
   await Joi.validate(req.body,createUserSchema);
   const testUser = await UserModel.findOne({email: req.body.email});

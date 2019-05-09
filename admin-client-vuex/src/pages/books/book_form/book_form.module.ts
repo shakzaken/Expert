@@ -6,7 +6,7 @@ import {api} from "@/api/api";
 import {mapFieldGetters,mapFieldsMutations} from "@/services/field/field";
 import {BookFormState,CategoryModel, BookResource, BookModel,
 	BOOK_FORM_FIELDS as FIELDS} from "@/types";
-
+import {MaxLength,MinLength,Required} from "@/services/validators";
 
 
 const getters : GetterTree<BookFormState,RootState> = {

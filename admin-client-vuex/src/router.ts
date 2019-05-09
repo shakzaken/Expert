@@ -11,7 +11,8 @@ Vue.use(VueRouter);
 
 const routes = [
     { path: "/users/form", component: UsersForm },
-    { path: "/users", component: UsersList },
+	{ path: "/users/form/:id", component: UsersForm },
+	{ path: "/users", component: UsersList },
     { path: "/books/form/:id", component: BookForm},
     { path: "/books/form", component: BookForm},
     { path: "/books", component: BooksList},

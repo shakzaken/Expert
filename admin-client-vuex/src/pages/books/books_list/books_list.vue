@@ -8,7 +8,7 @@
                 </router-link>
             </div>
         </div>
-        <el-table :data="[]">
+        <el-table :data="state.list">
             <el-table-column 
                 prop="name"
                 label="Name"
@@ -38,7 +38,6 @@
                 </template>
             </el-table-column>
         </el-table>
-		{{state.booksList}}
   </div>
 </template>
 
@@ -60,6 +59,7 @@ import { Prop ,Component} from 'vue-property-decorator';
 })
 export default class BooksListComponenet extends Vue {
 
+	someData = ["boom","sadas"];
 	
 	get state()  {
 	 return this.$root.$data.booksList;
@@ -71,8 +71,9 @@ export default class BooksListComponenet extends Vue {
 		return [];
 	}
 	
-	created(){
-		this.state.fetchBooks();
+	async mounted(){
+		await this.state.fetchBooks();
+	
 	}
 
 }

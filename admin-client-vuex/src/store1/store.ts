@@ -4,7 +4,7 @@ import UsersList from "./usersList";
 import UserModule from "./userModule";
 import CategoryModule from "./categoryModule";
 import CategoriesList from "./categoriesList";
-
+import {observable} from "mobx";
 
 
 
@@ -13,6 +13,7 @@ export default class AppStore{
 	userModule: UserModule;
 	usersList: UsersList;
 	bookModule: BookModule;
+	@observable
 	booksList: BooksList;
 	categoryModule: CategoryModule;
 	categoriesList: CategoriesList;

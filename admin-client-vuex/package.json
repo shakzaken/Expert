@@ -12,9 +12,12 @@
     "axios": "^0.18.0",
     "element-ui": "^2.4.11",
     "lodash": "^4.17.11",
+    "mobx": "^5.9.4",
+    "mobx-vue": "^2.0.9",
     "moment": "^2.24.0",
-    "vue": "^2.6.10",
+    "vue": "^2.5.21",
     "vue-loader": "^15.7.0",
+    "vue-property-decorator": "^8.1.1",
     "vue-router": "^3.0.2",
     "vuex": "^3.0.1"
   },

@@ -8,7 +8,7 @@
                 </router-link>
             </div>
         </div>
-        <el-table :data="books">
+        <el-table :data="[]">
             <el-table-column 
                 prop="name"
                 label="Name"
@@ -28,16 +28,17 @@
                 label="Operations">
                 <template slot-scope="scope">
                     <router-link :to="`/books/form/${scope.row.id}`">
-                        <el-button size="mini" @click="()=>editBook(scope.row.id)">Edit</el-button>
+                        <el-button size="mini">Edit</el-button>
                     </router-link>
                     <el-button
                         size="mini"
                         type="danger"
-                        @click="()=>handleDelete(scope.row.id)">Delete
+                        >Delete
                     </el-button>
                 </template>
             </el-table-column>
         </el-table>
+		{{state.booksList}}
   </div>
 </template>
 
@@ -46,6 +47,39 @@ import {Button , Alert} from 'element-ui';
 import {formMixin} from "@/mixins";
 import {BooksModule} from "@/pages/books/books_list/books.module";
 import Vue from "vue";
+
+import { Observer } from 'mobx-vue';
+//import { BooksList } from '../../../store1';
+import { Prop ,Component} from 'vue-property-decorator';
+
+
+
+@Observer
+@Component({
+	components:{}
+})
+export default class BooksListComponenet extends Vue {
+
+	
+	get state()  {
+	 return this.$root.$data.booksList;
+	}
+	
+	
+	get books(){
+		//return JSON.parse(JSON.stringify(this.state.booksList));
+		return [];
+	}
+	
+	created(){
+		this.state.fetchBooks();
+	}
+
+}
+
+
+
+/*
 
 export default Vue.extend({
 	name: "BooksList",
@@ -61,6 +95,7 @@ export default Vue.extend({
         }
     }
 });
+*/
 </script>
 
 
@@ -80,3 +115,4 @@ export default Vue.extend({
         }
     }
 </style>
+*/

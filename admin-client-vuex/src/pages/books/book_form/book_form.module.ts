@@ -3,14 +3,12 @@ import {Module,MutationTree,GetterTree,ActionTree} from "vuex";
 import {RootState} from "@/store";
 import router from "@/router";
 import {api} from "@/api/api";
-import {mapFieldGetters,mapFieldsMutations} from "@/services/field/field";
 import {BookFormState,CategoryModel, BookResource, BookModel,
 	BOOK_FORM_FIELDS as FIELDS} from "@/types";
 import {MaxLength,MinLength,Required} from "@/services/validators";
 
 
 const getters : GetterTree<BookFormState,RootState> = {
-	...mapFieldGetters(FIELDS),
 	getBookForServer(state) : BookResource {
 		const bookForServer : BookResource = {
 			name : state.name,
@@ -24,7 +22,6 @@ const getters : GetterTree<BookFormState,RootState> = {
 
 
 const mutations : MutationTree<BookFormState> = {
-	...mapFieldsMutations(FIELDS),
 	setBookDataFromServer : (state,book:BookModel) => {
 		state.name = book.name;
 		state.description = book.description;

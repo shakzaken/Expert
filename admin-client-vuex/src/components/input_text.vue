@@ -3,45 +3,37 @@
 		<el-input
 			:type="type"
 			@input="setValue"
-			:value="value"
-			:class="{error_input : errorState}"	
+			:value="field.value"
 		/>
+		<!--
 		<div v-for="error in errors" :key="error" class="error_message">
 			{{error}}
 		</div>
+		-->
 	</div>
 </template>
 
 
-<script>
+<script lang="ts">
 import Vue from "vue";
+import {Observer} from "mobx-vue";
+import {Prop,Component} from "vue-property-decorator";
+import {Field} from "@/store1";
 
-export default Vue.extend({
-	name:"InputText",
-	props:{
-		value: String,
-		password: Boolean,
-		type:{
-			type: String,
-			default:"text"
-		},
-		errors: {
-			type:Array,
-			default:() => []
-		}
-	},
-	methods:{
-		setValue(value){
-			this.$emit("input",value);
-		}
-	},
-	computed:{
-		errorState(){
-			this.errors.length > 0;
-		}
+
+@Observer
+@Component({})
+class InputText extends Vue {
+	@Prop() field:Field<any>;
+	@Prop({default:"text"}) type:string;
+
+
+	setValue(value:any){
+		this.field.setValue(value);
 	}
+}
 
-});
+export default InputText;
 </script>
 
 

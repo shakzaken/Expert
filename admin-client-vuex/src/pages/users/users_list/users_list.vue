@@ -23,7 +23,7 @@
                 label="Operations">
                 <template slot-scope="scope">
                     <router-link :to="`/users/form/${scope.row.id}`">
-                        <el-button size="mini" @click="()=>editUser(scope.row.id)">Edit</el-button>
+                        <el-button size="mini" @click="editUser(scope.row.id)">Edit</el-button>
                     </router-link>
                     <el-button
                         size="mini"
@@ -33,6 +33,7 @@
                 </template>
             </el-table-column>
         </el-table>
+		{{store.usersList.usersList}}
   </div>
 </template>
 
@@ -40,13 +41,23 @@
 import {} from "@/types";
 import Vue from "vue";
 import {UsersModule} from "./users.module";
-import {formMixin} from "@/mixins"
+import {formMixin} from "@/mixins";
+import {store1} from "@/store1";
+
 
 export default Vue.extend({
   name:"UsersList",
   mixins:[formMixin("users",UsersModule)],
+  data(){
+	  return {
+		 // state : store1
+		 id:5,
+		 store:store1
+	  }
+  },
   created(){
-      this.fetchUsers();
+	  //this.fetchUsers();
+	 // state.fetchList();
   }
 });
 </script>

@@ -5,6 +5,7 @@ import router from "./router";
     Change Auth header
 */
 import useAxios from "./axios";
+import {store1} from "./store1";
 import {store} from "./store";
 import useElementUi from "./element_ui";
 
@@ -20,5 +21,7 @@ Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
   router,
-  store
+//store:store,
+  data: store1
+
 }).$mount('#app')

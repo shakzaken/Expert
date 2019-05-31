@@ -17,6 +17,7 @@
 import navbar from "../components/navbar.vue";
 import sidebar from "../components/sidebar.vue";
 import Footer from "../components/footer.vue";
+import {} from "@/store1";
 
 export default {
   name: "Panel",

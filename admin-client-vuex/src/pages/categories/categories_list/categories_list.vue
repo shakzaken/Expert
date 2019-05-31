@@ -34,7 +34,12 @@ import Vue from "vue";
 import {} from "@/types";
 
 export default Vue.extend({
-    name: "CategoriesList",
+	name: "CategoriesList",
+	data(){ 
+		return {
+			someName:'name'
+		}
+	},
     created(){
         this.$store.dispatch("categories/fetchCategories");
     },

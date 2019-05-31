@@ -1,9 +1,9 @@
 <template>
     <form-group header="Category Form">
 		<input-group label="Name">
-			<input-text :value="name" @input="setName"/>
+			<input-text :field="state.name"/>
 		</input-group>
-        <el-button class="save-button" type="info" plain round @click="createCategory">
+        <el-button class="save-button" type="info" plain round @click="saveCategory">
             Save      
         </el-button>
     </form-group>
@@ -17,22 +17,28 @@ import { mapActions } from 'vuex';
 import Vue from "vue";
 import {formMixin} from "@/mixins"
 import {CategoryFormModule} from "./category_form.module"; 
+import {Prop,Component} from "vue-property-decorator";
+import { Observer } from 'mobx-vue';
+import { CategoryModule } from '@/store1';
 
-export default Vue.extend({
-	mixins:[formMixin("categoryForm",CategoryFormModule)],
-	name:"CategoryForm",
-	components:{
-		InputGroup,InputText,FormGroup
-	},
-    computed:{
-       
-    },
-    methods:{
-        createCategory(){       
-			this.$store.dispatch("categoryForm/createCategory");
-        }
-    }
-});
+
+@Observer
+@Component({
+	components:{InputGroup,InputText,FormGroup}
+})
+export default class CategoryForm extends Vue{
+
+	get state() : CategoryModule{
+		return this.$root.$data.categoryModule;
+	}
+	async saveCategory() : Promise<void>{
+		await this.state.saveCategory();
+		this.$router.push("/categories");
+	}
+
+}
+
+
 </script>
 
 

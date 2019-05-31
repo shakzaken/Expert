@@ -1,18 +1,13 @@
 <template>
 	<div>
 		<h4>Categories List</h4>
-		  <template>
-			  
-				
-
-				
+		  <template>				
 				<div v-for="category in categories" :key="category.id">
 					<p>{{category.id}}</p>
 					<p>{{category.name}}</p>
 				</div>
-
 				<el-table
-					:data="tableData"
+					:data="this.state.getCategories | parse"
 					style="width: 100%">
 					<el-table-column
 						prop="date"
@@ -48,7 +43,13 @@ import _ from "lodash";
 
 
 @Observer
-@Component
+@Component({
+	filters:{
+		parse(value: any){
+			return JSON.parse(JSON.stringify(value));
+		}
+	}
+})
 export default class CategoriesList extends Vue {
 
 	state = new CategoriesModel();
@@ -56,8 +57,9 @@ export default class CategoriesList extends Vue {
 		this.state.fetchCategories();
 	}
 	
-	get categories(){
-		return this.state.getCategories;
+	categories(){
+		const categories = this.state.getCategories;
+		return JSON.parse(JSON.stringify(categories));
 	}
 }
 </script>

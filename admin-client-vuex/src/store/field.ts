@@ -1,5 +1,5 @@
 import {Module} from "vuex";
-import {RootState} from "../store";
+//import {RootState} from "../../store";
 
 export interface FieldState  {
 
@@ -10,9 +10,9 @@ export interface FieldState  {
 
 
 
-
+/*
 export const Field : Module<FieldState,RootState>  = {
-
+	namespaced:true,
 	state(){
 		return {
 			value:'',
@@ -50,3 +50,4 @@ export const Field : Module<FieldState,RootState>  = {
 		}
 	}
 }
+*/

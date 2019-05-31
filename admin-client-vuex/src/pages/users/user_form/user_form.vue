@@ -1,16 +1,16 @@
 <template>	
     <form-group header="User Form">
 		<input-group label="Name">
-			<input-text :value="name" @input="setName" :errors="name_errors"/>
+			<input-text :field="state.name"/>
 		</input-group>
 		<input-group label="Email">
-			<input-text :value="email" @input="setEmail" :errors="email_errors" />
+			<input-text :field="state.email" />
 		</input-group>
-		<input-group v-if="!getEditState" label="Passowrd">
-			<input-text :value="password" @input="setPassword" type="password" :errors="password_errors" />
+		<input-group  label="Passowrd">
+			<input-text :field="state.password" type="password"  />
 		</input-group>
-		<input-group v-if="!getEditState" label="Confirm Password">
-			<input-text :value="confirmPassword" @input="setConfirmPassword" type="password" :errors="confirmPassword_errors" />
+		<input-group label="Confirm Password">
+			<input-text :field="state.confirmPassword"  type="password"  />
 		</input-group>        
         <el-button class="save-button" type="info" plain round @click="saveUser">
                 Save
@@ -18,31 +18,38 @@
     </form-group>
 </template>
 
-<script>
+<script lang="ts">
 import {ERROR_STATUS} from "@/constants";
 import {FormGroup,InputGroup,InputText} from "@/components";
 import Vue from "vue";
-import {UserFormModule} from "./user_form.module";
 import {formMixin} from "@/mixins";
+import {Prop,Component} from "vue-property-decorator";
+import {Observer} from "mobx-vue";
+import { UsersModule } from '../users_list/users.module';
+import { UserModel } from '../../../types';
+import {UserModule} from "@/store1";
 
-export default Vue.extend({
-	name: "User-Form",
-	mixins:[formMixin("userForm",UserFormModule)],
-	components:{
-		FormGroup,InputGroup,InputText	
-	},
-	created(){
 
-		this.clearDirtyFields();
-		if (this.$route.params.id){
-			this.setEditState(true);	
-		}else{
-			this.setEditState(false);
-			this.clearForm();
-			this.setFields();
-		}
+
+@Observer
+@Component({
+	components:{FormGroup,InputGroup,InputText}
+})
+export default class UserForm extends Vue {
+
+	async saveUser() : Promise<void> {
+		await this.state.saveUser();
+		this.$router.push("/users");
 	}
-});
+
+
+	get state() : UserModule {
+		return this.$root.$data.userModule;
+	}
+
+
+}
+
 </script>
 
 

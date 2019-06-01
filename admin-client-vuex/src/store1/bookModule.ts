@@ -1,7 +1,7 @@
 import {observable, computed, action} from "mobx";
 import Field from "./field";
 import {api} from "@/api/api";
-import {BookResource,BookModel} from "@/types";
+import {BookResource,BookModel, CategoryModel} from "@/types";
 
 
 export default class BookModule {
@@ -23,6 +23,9 @@ export default class BookModule {
 
 	@observable
 	categoryId:Field<string>;
+
+	@observable.ref
+	categories:CategoryModel[] = [];
 
 
 	constructor(){
@@ -64,6 +67,10 @@ export default class BookModule {
 		this.imageUrl.setValue(book.imageUrl);
 		this.description.setValue(book.description);
 		this.categoryId.setValue(book.categoryId);
+	}
+	@action.bound
+	async fetchCategories(){
+		this.categories = await api.categories.getCategories();
 	}
 
 	saveBookForm() : Promise<BookResource> {

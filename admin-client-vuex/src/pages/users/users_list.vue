@@ -51,7 +51,11 @@ export default class UsersListComponenet extends Vue {
 
     get state() : UsersList {
         return this.$root.$data.usersList;
-    }
+	}
+	
+	created(){
+		this.state.fetchUsers();
+	}
 }
 
 

@@ -1,6 +1,6 @@
 <template>
 	<el-select 
-		:value="value"
+		:value="field.value"
 		@input="setValue"
 		placeholder="Select">
 		<el-option 
@@ -15,19 +15,30 @@
 
 
 <script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
-	name:"selectInput",
-	props:{
-		options: Array,
-		value:String
-	},
-	methods:{
-		setValue(value){
-			this.$emit("input",value);
-		}
+
+import {Observer} from "mobx-vue";
+import {Component,Prop} from "vue-property-decorator";
+import Vue from "vue";
+import {Field} from "@/store1";
+
+interface Option {
+	id:any;
+	name: string;
+}
+
+
+@Observer
+@Component({})
+export default class SelectInput extends Vue{
+	@Prop() field:Field<any>;
+	@Prop() options: Option[];
+
+	setValue(value: any){
+		this.field.setValue(value);
 	}
-});
+
+}
+
 </script>
 
 

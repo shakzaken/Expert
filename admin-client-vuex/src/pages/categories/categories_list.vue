@@ -34,6 +34,7 @@ import Vue from "vue";
 import {} from "../../types";
 import {Observer} from "mobx-vue";
 import {Component} from "vue-property-decorator";
+import {CategoriesList} from "@/store1";
 
 @Observer
 @Component({
@@ -41,8 +42,11 @@ import {Component} from "vue-property-decorator";
 })
 export default class categoriesListComponent extends Vue {
 
-  get state(){
+  get state() : CategoriesList {
     return this.$root.$data.categoriesList;
+  }
+  created(){
+	  this.state.fetchCategories();
   }
 }
 

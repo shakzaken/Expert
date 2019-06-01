@@ -7,19 +7,17 @@
 			<input-group label="Description">
 				<input-text :field="state.description" />
 			</input-group>
-			<!--
+			
 			<input-group label="Category">
 				<select-input
-					:value="categoryId"
-					@input="setCategoryId"
-					:options="categories"
+					:field="state.categoryId"
+					:options="state.categories"
 				/>
 			</input-group>
-			-->
 			<input-group label="Image Url">
 				<input-text :field="state.imageUrl" />
 			</input-group>
-			<el-button class="save-button" type="info" plain round @click="createBook">
+			<el-button class="save-button" type="info" plain round @click="saveBook">
                 Save
         	</el-button>
         </div>
@@ -32,7 +30,6 @@ import {ERROR_STATUS} from "../../constants/index";
 import {InputGroup,InputText,FormGroup,SelectInput} from "../../components/index";
 import {mapGetters,mapMutations} from "vuex";
 import {formMixin} from "../../mixins/form.mixin";
-import {BookFormModule} from "./book_form/book_form.module";
 import Vue from "vue";
 import {BookModule} from "../../store1/index";
 import {Prop,Component} from "vue-property-decorator";
@@ -47,6 +44,13 @@ class BookForm extends Vue{
 
 	get state() : BookModule {
 		return this.$root.$data.bookModule;
+	}
+	async saveBook(){
+		await this.state.saveBookForm();
+		this.$router.push("/books");
+	}
+	created(){
+		this.state.fetchCategories();
 	}
 
 }

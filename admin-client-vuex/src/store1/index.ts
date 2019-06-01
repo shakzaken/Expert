@@ -8,5 +8,6 @@ import CategoriesList from "./categoriesList";
 import Field from "./field";
 
 const store1 = new AppStore();
+const BooksListObj = new BooksList();
 export {store1,BookModule,BooksList,UsersList,
-	Field,UserModule,CategoryModule,CategoriesList};
+	Field,UserModule,CategoryModule,CategoriesList,BooksListObj};

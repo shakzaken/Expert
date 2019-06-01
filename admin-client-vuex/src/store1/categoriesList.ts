@@ -7,12 +7,12 @@ import { api } from '@/api/api';
 
 
 export default class CategoriesList{
-	
-	@observable
-	categoriesList : CategoryModel[];
+
+	@observable.ref
+	categoriesList : CategoryModel[] = [];
 
 	constructor(){
-		
+
 	}
 
 

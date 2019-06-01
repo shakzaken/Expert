@@ -4,7 +4,6 @@ import UsersList from "./usersList";
 import UserModule from "./userModule";
 import CategoryModule from "./categoryModule";
 import CategoriesList from "./categoriesList";
-import {observable} from "mobx";
 
 
 
@@ -13,7 +12,6 @@ export default class AppStore{
 	userModule: UserModule;
 	usersList: UsersList;
 	bookModule: BookModule;
-	@observable
 	booksList: BooksList;
 	categoryModule: CategoryModule;
 	categoriesList: CategoriesList;
@@ -25,7 +23,7 @@ export default class AppStore{
 		this.bookModule = new BookModule();
 		this.booksList = new BooksList();
 		this.categoryModule = new CategoryModule();
-		//this.categoriesList = new CategoriesList();
+		this.categoriesList = new CategoriesList();
 	}
 
 

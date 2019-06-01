@@ -9,17 +9,17 @@
             </div>
         </div>
         <el-table :data="state.list">
-            <el-table-column 
+            <el-table-column
                 prop="name"
                 label="Name"
                 width="180">
             </el-table-column>
-            <el-table-column 
+            <el-table-column
                 prop="description"
                 label="Description"
                 width="180">
             </el-table-column>
-            <el-table-column 
+            <el-table-column
                 prop="date"
                 label="Date"
                 width="180">
@@ -43,12 +43,10 @@
 
 <script lang="ts">
 import {Button , Alert} from 'element-ui';
-import {formMixin} from "@/mixins";
-import {BooksModule} from "@/pages/books/books_list/books.module";
 import Vue from "vue";
 
 import { Observer } from 'mobx-vue';
-//import { BooksList } from '../../../store1';
+import { BooksList } from '../../store1/index';
 import { Prop ,Component} from 'vue-property-decorator';
 
 
@@ -59,44 +57,21 @@ import { Prop ,Component} from 'vue-property-decorator';
 })
 export default class BooksListComponenet extends Vue {
 
-	someData = ["boom","sadas"];
-	
-	get state()  {
-	 return this.$root.$data.booksList;
+
+	get state() : BooksList{
+	    return this.$root.$data.booksList;
 	}
-	
-	
-	get books(){
-		//return JSON.parse(JSON.stringify(this.state.booksList));
-		return [];
-	}
-	
+
 	async mounted(){
 		await this.state.fetchBooks();
-	
+
 	}
 
 }
 
 
 
-/*
 
-export default Vue.extend({
-	name: "BooksList",
-	mixins:[formMixin("books",BooksModule)],
-    created(){
-        this.fetchBooks();
-    },
-    methods:{
-        handleDelete(id){
-            if(confirm("Are you sure you want to delete this book?")){
-               this.deleteBook(id);
-            }
-        }
-    }
-});
-*/
 </script>
 
 

@@ -4,22 +4,22 @@
 			<input-text :field="state.name"/>
 		</input-group>
         <el-button class="save-button" type="info" plain round @click="saveCategory">
-            Save      
+            Save
         </el-button>
     </form-group>
 </template>
 
 
 <script lang="ts">
-import {ERROR_STATUS} from "@/constants";
-import {FormGroup,InputGroup,InputText} from "@/components";
+import {ERROR_STATUS} from "../../constants/index";
+import {FormGroup,InputGroup,InputText} from "../../components/index";
 import { mapActions } from 'vuex';
 import Vue from "vue";
-import {formMixin} from "@/mixins"
-import {CategoryFormModule} from "./category_form.module"; 
+import {formMixin} from "../../mixins/index"
+import {CategoryFormModule} from "./category_form/category_form.module";
 import {Prop,Component} from "vue-property-decorator";
 import { Observer } from 'mobx-vue';
-import { CategoryModule } from '@/store1';
+import { CategoryModule } from '../../store1/index';
 
 
 @Observer

@@ -7,21 +7,21 @@ import { api } from '@/api/api';
 
 export default class BooksList {
 
-	@observable
-	booksList: BookModel[];
+	@observable.ref
+	booksList: BookModel[] = [];
 
-	
+
 	constructor(){
-	
+
 	}
 
 	@action.bound
 	async fetchBooks(){
 		this.booksList = await api.books.getBooks();
-	
+
 	}
 
-	
+
 
 	@action.bound
 	async deleteBook(id: string) : Promise<void>{
@@ -31,7 +31,7 @@ export default class BooksList {
 
 	@computed
 	get list(){
-		return this.booksList && this.booksList.map(book => toJS(book)) || [];
+		return this.booksList.map(book => toJS(book));
 	}
 
 }

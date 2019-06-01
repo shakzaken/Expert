@@ -3,7 +3,7 @@ import { UserModel } from '@/types';
 import { api } from '@/api/api';
 import {Field} from "@/store1";
 
-export default class UserList{
+export default class UsersList{
 
 
 	@observable
@@ -24,5 +24,5 @@ export default class UserList{
 		await api.users.deleteUser(id);
 		this.fetchUsers();
 	}
-	
+
 }

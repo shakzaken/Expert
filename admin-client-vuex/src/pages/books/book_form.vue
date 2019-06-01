@@ -18,23 +18,23 @@
 			-->
 			<input-group label="Image Url">
 				<input-text :field="state.imageUrl" />
-			</input-group> 
+			</input-group>
 			<el-button class="save-button" type="info" plain round @click="createBook">
                 Save
-        	</el-button>       
+        	</el-button>
         </div>
     </form-group>
 </template>
 
 <script lang="ts">
-import {BOOK_FORM_FIELDS as FIELDS} from "@/types";
-import {ERROR_STATUS} from "@/constants";
-import {InputGroup,InputText,FormGroup,SelectInput} from "@/components";
+import {BOOK_FORM_FIELDS as FIELDS} from "../../types";
+import {ERROR_STATUS} from "../../constants/index";
+import {InputGroup,InputText,FormGroup,SelectInput} from "../../components/index";
 import {mapGetters,mapMutations} from "vuex";
-import {formMixin} from "@/mixins/form.mixin";
-import {BookFormModule} from "./book_form.module";
+import {formMixin} from "../../mixins/form.mixin";
+import {BookFormModule} from "./book_form/book_form.module";
 import Vue from "vue";
-import {BookModule} from "@/store1";
+import {BookModule} from "../../store1/index";
 import {Prop,Component} from "vue-property-decorator";
 import {Observer} from "mobx-vue";
 
@@ -48,7 +48,7 @@ class BookForm extends Vue{
 	get state() : BookModule {
 		return this.$root.$data.bookModule;
 	}
-	
+
 }
 
 export default BookForm;

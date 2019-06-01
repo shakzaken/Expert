@@ -8,8 +8,8 @@
                 </router-link>
             </div>
         </div>
-        <el-table :data="categories">
-            <el-table-column 
+        <el-table :data="state.list">
+            <el-table-column
                 prop="name"
                 label="Name"
                 width="180">
@@ -17,7 +17,7 @@
                <el-table-column
                     label="Operations">
                     <template slot-scope="scope">
-                    
+
                         <el-button
 							size="mini"
 							type="danger"
@@ -31,34 +31,22 @@
 
 <script lang="ts">
 import Vue from "vue";
-import {} from "@/types";
+import {} from "../../types";
+import {Observer} from "mobx-vue";
+import {Component} from "vue-property-decorator";
 
-export default Vue.extend({
-	name: "CategoriesList",
-	data(){ 
-		return {
-			someName:'name'
-		}
-	},
-    created(){
-        this.$store.dispatch("categories/fetchCategories");
-    },
-    computed:{
-        categories(){
-            return this.$store.getters["categories/categories"];
-        }
-    },
-    methods:{
-        handleEdit(index,row){
-           console.log(index,row); 
-        },
-        handleDelete(id){
-            if(confirm("Are you sure you want to delete this category")){
-                this.$store.dispatch("categories/deleteCategory",id);
-            }
-        }
-    }
-});
+@Observer
+@Component({
+  components:{}
+})
+export default class categoriesListComponent extends Vue {
+
+  get state(){
+    return this.$root.$data.categoriesList;
+  }
+}
+
+
 </script>
 
 
@@ -67,9 +55,9 @@ export default Vue.extend({
     .categories-list{
         &-header{
             display: flex;
-            margin-bottom: 30px; 
+            margin-bottom: 30px;
         }
-        &-title{  
+        &-title{
             flex:1;
             padding-left: 50px;
             padding-top: 10px;

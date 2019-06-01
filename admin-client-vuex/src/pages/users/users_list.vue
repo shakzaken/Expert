@@ -8,7 +8,7 @@
 				</router-link>
             </div>
         </div>
-        <el-table :data="users">
+        <el-table :data="state.list">
             <el-table-column
                 prop="name"
                 label="Name"
@@ -33,33 +33,28 @@
                 </template>
             </el-table-column>
         </el-table>
-		{{store.usersList.usersList}}
   </div>
 </template>
 
-<script>
-import {} from "@/types";
+<script lang="ts">
+
 import Vue from "vue";
-import {UsersModule} from "./users.module";
-import {formMixin} from "@/mixins";
-import {store1} from "@/store1";
+import {UsersList} from "../../store1/index";
+import {Component} from "vue-property-decorator";
+import {Observer} from "mobx-vue";
+
+@Observer
+@Component({
+  components:{}
+})
+export default class UsersListComponenet extends Vue {
+
+    get state() : UsersList {
+        return this.$root.$data.usersList;
+    }
+}
 
 
-export default Vue.extend({
-  name:"UsersList",
-  mixins:[formMixin("users",UsersModule)],
-  data(){
-	  return {
-		 // state : store1
-		 id:5,
-		 store:store1
-	  }
-  },
-  created(){
-	  //this.fetchUsers();
-	 // state.fetchList();
-  }
-});
 </script>
 
 

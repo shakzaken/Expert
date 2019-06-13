@@ -93,7 +93,14 @@ export interface CategoryFormState {
 
 
 
+/*
+** Auth
+*/
 
+export interface AuthSummary{
+	email : string;
+	password: string;
+}
 
 
 

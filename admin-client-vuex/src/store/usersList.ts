@@ -1,7 +1,6 @@
 import { observable, action, computed, toJS } from 'mobx';
 import { UserModel } from '@/types';
 import { api } from '@/api/api';
-import {Field} from "@/store1";
 
 export default class UsersList{
 

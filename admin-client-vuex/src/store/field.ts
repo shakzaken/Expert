@@ -1,53 +1,59 @@
-import {Module} from "vuex";
-//import {RootState} from "../../store";
-
-export interface FieldState  {
-
-	value: any;
-	dirty: boolean;
-	validators: Function[];
-}
+import { observable,computed, action } from 'mobx';
 
 
 
-/*
-export const Field : Module<FieldState,RootState>  = {
-	namespaced:true,
-	state(){
-		return {
-			value:'',
-			dirty: false,
-			validators: []
-		}	
-	},
-	mutations:{
-		setValue(state,value : any){
-			state.value = value;
-			state.dirty = false;
-		},
-		setValidators(state,validators: Function[]){
-			state.validators = validators;
-		}
-		
-	},
-	getters:{
-		getValue(state){
-			return state.value;
-		},
-		getErrors(state){
-			const errors = [];
-			if(!state.dirty){
-				return [];
-			}else{
-				state.validators.forEach(validator => {
-					const message : string = validator(state.value);
-					if(message){
-						errors.push(message);
-					}
-				});
-				return errors;
-			}
-		}
+
+
+export default class Field<T>{
+	
+	@observable
+	private _value: T;
+
+	@observable
+	dirty:boolean;
+
+	@observable.ref
+	validators: Function[] = [];
+
+	constructor(value: T = null,validators:Function[] = []){
+		this._value = value;
+		this.validators = validators;
+		this.dirty = false;
+	}
+
+
+	@computed
+	get value() : T {
+		return this._value;
+	}
+
+	@computed
+	get errors(){
+		const errors : string[] = [];
+		this.validators.forEach(validator =>{
+			const errorMessage : string|null = validator(this._value);
+			errorMessage && errors.push(errorMessage);
+		});
+		return errors;
+	}
+
+	@computed
+	get valid(){
+		return this.errors.length === 0;
+	}
+
+	@action.bound
+	clearField(){
+		this._value = null;
+		this.dirty = false;
+	}
+
+	@action.bound
+	setValue(value : T){
+		this._value = value;
+	}
+	@action.bound
+	setDirty(){
+		this.dirty = true;
 	}
 }
-*/

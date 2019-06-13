@@ -6,14 +6,14 @@
 		<input-group label="Email">
 			<input-text :field="state.email" />
 		</input-group>
-		<input-group  label="Passowrd">
+		<input-group v-if="!state.editState"  label="Passowrd">
 			<input-text :field="state.password" type="password"  />
 		</input-group>
-		<input-group label="Confirm Password">
+		<input-group v-if="!state.editState" label="Confirm Password">
 			<input-text :field="state.confirmPassword"  type="password"  />
 		</input-group>
         <el-button class="save-button" type="info" plain round @click="saveUser">
-                Save
+                {{buttonMessage(this.state.editState)}}
         </el-button>
     </form-group>
 </template>
@@ -25,9 +25,8 @@ import Vue from "vue";
 import {formMixin} from "../../mixins/index";
 import {Prop,Component} from "vue-property-decorator";
 import {Observer} from "mobx-vue";
-import { UsersModule } from './users_list/users.module';
 import { UserModel } from '../../types';
-import {UserModule} from "../../store1/index";
+import {UserModule} from "../../store/index";
 
 
 
@@ -45,6 +44,13 @@ export default class UserForm extends Vue {
 
 	get state() : UserModule {
 		return this.$root.$data.userModule;
+	}
+	buttonMessage(editState: boolean){
+		return editState ? "Update" : "Save";
+	}
+
+	destroyed(){
+		this.state.clearUserForm();
 	}
 
 

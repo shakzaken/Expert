@@ -1,0 +1,236 @@
+[
+    {
+        "type": "Group",
+        "name": "Books",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "byUkE6QX97dvwms8",
+        "iconColor": "rgb(255, 0, 0)"
+    },
+    {
+        "type": "Group",
+        "name": "Users",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "wfWbmMqosyIdcvu2",
+        "iconColor": "rgb(255, 255, 0)"
+    },
+    {
+        "type": "Group",
+        "name": "Categories",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "3GtQL2TgX7bewoqc",
+        "iconColor": "rgb(0, 128, 0)"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\pages\\books\\book_form.vue",
+        "parent_id": "byUkE6QX97dvwms8",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\pages\\books\\book_form.vue",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "Zc3gMbGpHXt7Cuml"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\pages\\books\\books_list.vue",
+        "parent_id": "byUkE6QX97dvwms8",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\pages\\books\\books_list.vue",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "rvOGgjNXI04uC1VW"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\pages\\categories\\categories_list.vue",
+        "parent_id": "3GtQL2TgX7bewoqc",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\pages\\categories\\categories_list.vue",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "DeP0cQxXtHTWuJr9"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\pages\\categories\\category_form.vue",
+        "parent_id": "3GtQL2TgX7bewoqc",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\pages\\categories\\category_form.vue",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "HCFLk2V6IefZ9REv"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\pages\\users\\user_form.vue",
+        "parent_id": "wfWbmMqosyIdcvu2",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\pages\\users\\user_form.vue",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "Gf49As8BDNwOdQ7z"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\pages\\users\\users_list.vue",
+        "parent_id": "wfWbmMqosyIdcvu2",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\pages\\users\\users_list.vue",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "f8MqFnW6bLl9r5Gw"
+    },
+    {
+        "type": "Group",
+        "name": "Global",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "y918NtUBLRIpZh4K",
+        "iconColor": "rgb(255, 0, 255)"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\validators.ts",
+        "parent_id": "y918NtUBLRIpZh4K",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\validators.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "MyCRcrnajw4zPIYp"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\api\\api.ts",
+        "parent_id": "y918NtUBLRIpZh4K",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\api\\api.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "OWHfK0YISw8x6Lns"
+    },
+    {
+        "type": "Group",
+        "name": "Components",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "WnC2YNf3cvpOaQDq",
+        "iconColor": "rgb(0, 128, 128)"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\bookModule.ts",
+        "parent_id": "byUkE6QX97dvwms8",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\bookModule.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "UiRkIXGlFAw6qYfo"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\booksList.ts",
+        "parent_id": "byUkE6QX97dvwms8",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\booksList.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "AqCYf9ByoUXIr6Vg"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\categoriesList.ts",
+        "parent_id": "3GtQL2TgX7bewoqc",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\categoriesList.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "qjaIUOKtrygFvefn"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\categoryModule.ts",
+        "parent_id": "3GtQL2TgX7bewoqc",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\categoryModule.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "6xebVj3CUKtiLESO"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\userModule.ts",
+        "parent_id": "wfWbmMqosyIdcvu2",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\userModule.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "NcxdLwvtREJ7iVoz"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\usersList.ts",
+        "parent_id": "wfWbmMqosyIdcvu2",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\usersList.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "I6ka2hoiBJTdCASP"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\field.ts",
+        "parent_id": "y918NtUBLRIpZh4K",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\field.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "WmbNprjCT9ZLxUEA"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\components\\input_text.vue",
+        "parent_id": "WnC2YNf3cvpOaQDq",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\components\\input_text.vue",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "SUYbLFWfD9126pMa"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\components\\select_input.vue",
+        "parent_id": "WnC2YNf3cvpOaQDq",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\components\\select_input.vue",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "gfPHYuro9WmIOV6h"
+    },
+    {
+        "type": "Group",
+        "name": "auth",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "0Lw5dP2BZuKQC7hq",
+        "iconColor": "rgb(0, 0, 128)"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\authModule.ts",
+        "parent_id": "0Lw5dP2BZuKQC7hq",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\store\\authModule.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "5mfEiZWohaIGCjeP"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\pages\\auth\\login_page.vue",
+        "parent_id": "0Lw5dP2BZuKQC7hq",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\pages\\auth\\login_page.vue",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "ZOvTjgqNbnm4sot1"
+    },
+    {
+        "type": "File",
+        "name": "f:\\Projects\\Expert\\admin-client-vuex\\src\\types.ts",
+        "parent_id": "y918NtUBLRIpZh4K",
+        "fsPath": "f:\\Projects\\Expert\\admin-client-vuex\\src\\types.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "fcW0NQpjb9gtLdJU"
+    }
+]

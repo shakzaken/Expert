@@ -16,10 +16,9 @@ import {FormGroup,InputGroup,InputText} from "../../components/index";
 import { mapActions } from 'vuex';
 import Vue from "vue";
 import {formMixin} from "../../mixins/index"
-import {CategoryFormModule} from "./category_form/category_form.module";
 import {Prop,Component} from "vue-property-decorator";
 import { Observer } from 'mobx-vue';
-import { CategoryModule } from '../../store1/index';
+import { CategoryModule } from '../../store';
 
 
 @Observer

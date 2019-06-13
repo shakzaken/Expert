@@ -2,7 +2,7 @@ import {observable, computed, action} from "mobx";
 import Field from "./field";
 import {api} from "@/api/api";
 import {BookResource,BookModel, CategoryModel} from "@/types";
-
+import {Required,MaxLength,MinLength} from "@/store/validators";
 
 export default class BookModule {
 
@@ -30,10 +30,10 @@ export default class BookModule {
 
 	constructor(){
 		this.loading = false;
-		this.name = new Field();
-		this.description = new Field();
-		this.imageUrl = new Field();
-		this.categoryId = new Field();
+		this.name = new Field(null,[Required,MinLength(3),MaxLength(255)]);
+		this.description = new Field(null,[Required,MinLength(5),MaxLength(512)]);
+		this.imageUrl = new Field(null,[Required,MinLength(5),MaxLength(512)]);
+		this.categoryId = new Field(null,[Required]);
 	}
 
 	@computed
@@ -56,13 +56,13 @@ export default class BookModule {
 	@action.bound
 	async setEditState(id: string){
 		this.loading = true;
-		const bookResource : BookResource = await api.books.getBook(id);
+		const bookResource : BookModel = await api.books.getBook(id);
 		this.setBookData(bookResource);
 		this.loading = false;
 	}
 	@action.bound
-	setBookData(book:BookResource) : void {
-		this.id = book._id;
+	setBookData(book:BookModel) : void {
+		this.id = book.id;
 		this.name.setValue(book.name);
 		this.imageUrl.setValue(book.imageUrl);
 		this.description.setValue(book.description);
@@ -71,6 +71,15 @@ export default class BookModule {
 	@action.bound
 	async fetchCategories(){
 		this.categories = await api.categories.getCategories();
+	}
+
+	@action.bound
+	clearBookForm(){
+		this.id = null;
+		this.name.clearField();
+		this.imageUrl.clearField();
+		this.description.clearField();
+		this.categoryId.clearField();
 	}
 
 	saveBookForm() : Promise<BookResource> {

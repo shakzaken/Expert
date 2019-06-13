@@ -31,7 +31,7 @@ import {InputGroup,InputText,FormGroup,SelectInput} from "../../components/index
 import {mapGetters,mapMutations} from "vuex";
 import {formMixin} from "../../mixins/form.mixin";
 import Vue from "vue";
-import {BookModule} from "../../store1/index";
+import {BookModule} from "../../store/index";
 import {Prop,Component} from "vue-property-decorator";
 import {Observer} from "mobx-vue";
 
@@ -51,6 +51,9 @@ class BookForm extends Vue{
 	}
 	created(){
 		this.state.fetchCategories();
+	}
+	destroyed(){
+		this.state.clearBookForm();
 	}
 
 }

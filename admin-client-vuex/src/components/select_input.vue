@@ -19,7 +19,7 @@
 import {Observer} from "mobx-vue";
 import {Component,Prop} from "vue-property-decorator";
 import Vue from "vue";
-import {Field} from "@/store1";
+import {Field} from "@/store";
 
 interface Option {
 	id:any;

@@ -13,12 +13,15 @@
     </div>
 </template>
 
-<script>
-import navbar from "../components/navbar.vue";
-import sidebar from "../components/sidebar.vue";
+<script lang="ts">
+import Navbar from "../components/navbar.vue";
+import Sidebar from "../components/sidebar.vue";
 import Footer from "../components/footer.vue";
-import {} from "@/store1";
+import Vue from "vue";
+import {Observer} from "mobx-vue";
+import {Component} from "vue-property-decorator";
 
+/*
 export default {
   name: "Panel",
   components:{
@@ -26,7 +29,22 @@ export default {
     sidebar,
     Footer
   }
-}   
+}
+*/   
+
+
+@Observer
+@Component({
+	components:{
+		Navbar,Sidebar,Footer
+	}
+})
+export default class Panel extends Vue {
+
+	created(){
+		this.$root.$data.authModule.autoLogin();
+	}
+}
 </script>
 
 <style lang="scss" scoped>

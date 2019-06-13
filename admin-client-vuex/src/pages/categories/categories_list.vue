@@ -17,7 +17,6 @@
                <el-table-column
                     label="Operations">
                     <template slot-scope="scope">
-
                         <el-button
 							size="mini"
 							type="danger"
@@ -34,7 +33,7 @@ import Vue from "vue";
 import {} from "../../types";
 import {Observer} from "mobx-vue";
 import {Component} from "vue-property-decorator";
-import {CategoriesList} from "@/store1";
+import {CategoriesList} from "@/store";
 
 @Observer
 @Component({
@@ -47,6 +46,9 @@ export default class categoriesListComponent extends Vue {
   }
   created(){
 	  this.state.fetchCategories();
+  }
+  handleDelete(id:string){
+	  this.state.deleteCategory(id);
   }
 }
 

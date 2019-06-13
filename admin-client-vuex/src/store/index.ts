@@ -7,7 +7,7 @@ import CategoryModule from "./categoryModule";
 import CategoriesList from "./categoriesList";
 import Field from "./field";
 
-const store1 = new AppStore();
+const store = new AppStore();
 const BooksListObj = new BooksList();
-export {store1,BookModule,BooksList,UsersList,
+export {store,BookModule,BooksList,UsersList,
 	Field,UserModule,CategoryModule,CategoriesList,BooksListObj};

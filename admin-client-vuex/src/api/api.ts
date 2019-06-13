@@ -1,5 +1,5 @@
 import axios,{AxiosResponse} from "axios";
-import {UserResource,UserModel,BookModel,BookResource, CategoryModel, CategoryResource} from "@/types";
+import {UserResource,UserModel,BookModel,BookResource, CategoryModel, CategoryResource, AuthSummary} from "@/types";
 
 
 function mapUserResourceForUserModel(userResource: UserResource) : UserModel {
@@ -111,8 +111,21 @@ const categories = {
 }
 
 
+const auth = {
+	async login(loginDetails : AuthSummary) : Promise<string|null>{
+		try{
+			const result = await axios.post("/auth/login",loginDetails);
+			return result.data.token
+		}catch(err){
+			return null;
+		}		
+	}
+
+}
+
+
 
 
 export const api = {
-	users,books,categories
+	users,books,categories,auth
 };

@@ -28,7 +28,7 @@
                     <el-button
                         size="mini"
                         type="danger"
-                        @click="()=>deleteUser(scope.row.id)">Delete
+                        @click="deleteUser(scope.row.id)">Delete
                     </el-button>
                 </template>
             </el-table-column>
@@ -39,7 +39,7 @@
 <script lang="ts">
 
 import Vue from "vue";
-import {UsersList} from "../../store1/index";
+import {UsersList, UserModule} from "../../store/index";
 import {Component} from "vue-property-decorator";
 import {Observer} from "mobx-vue";
 
@@ -52,9 +52,20 @@ export default class UsersListComponenet extends Vue {
     get state() : UsersList {
         return this.$root.$data.usersList;
 	}
+	get userFormState() : UserModule {
+		return this.$root.$data.userModule;
+	}
 	
-	created(){
+	created() : void {
 		this.state.fetchUsers();
+	}
+	deleteUser(id:string) : void {
+		if(confirm("Are you sure you want to delete this user?")){
+			this.state.deleteUser(id);
+		}
+	}
+	editUser(id:string) : void {
+		this.userFormState.setEditState(id);
 	}
 }
 

@@ -6,23 +6,38 @@
       </li>
     </ul>
     <ul class="navbar-list navbar-list-right">
-      <li class="navbar-item">
+      <li v-if="!authState.isLogin" class="navbar-item">
         <router-link to="/login" class="navbar-link">Login</router-link>
       </li>
-      <li class="navbar-item">
-        <a href="#" class="navbar-link">Logut</a>
+	  <li v-if="authState.isLogin" class="navbar-item">
+        {{authState.email.value}}
+      </li>
+      <li class="navbar-item" v-if="authState.isLogin">
+        <a href="#" class="navbar-link" @click="authState.logout">Logout</a>
       </li>
     </ul>
   </nav>
 </template>
 
-<script>
+<script lang="ts">
+import {Observer} from "mobx-vue";
+import {Component} from "vue-property-decorator";
+import Vue from "vue";
+import AuthModule from '../store/authModule';
 
-export default {
-  name: "Navbar"
-  
+
+@Observer
+@Component({
+	components:{}
+})
+export default class Navbar extends Vue {
+
+	get authState() : AuthModule {
+		return this.$root.$data.authModule;
+	}
 
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -30,11 +45,12 @@ export default {
   .navbar{
 
     display: flex;
-    background: black;
+    background: rgb(0, 0, 0);
     color: white;
-    height:10vh;
+    height:12vh;
     padding: 2rem 0;
     min-height:6.5rem;
+	border-bottom: 4px solid rgb(233, 51, 106);
     
     font-weight: 500;
 
@@ -45,7 +61,7 @@ export default {
      
      &-left{
         justify-content: center;
-        font-size:2rem;
+        font-size:1.8rem;
      }
      &-right{
        justify-content: center;
@@ -54,7 +70,7 @@ export default {
     }
     &-item{
       list-style: none;
-      margin-left: 2rem;
+      margin-left: 1.8rem;
       
     }
     &-link{

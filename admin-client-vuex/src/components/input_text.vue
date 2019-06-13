@@ -1,15 +1,16 @@
 <template>
-	<div class="input-text">
+	<div :class="['input-text',{error:showError(field)}]">
 		<el-input
 			:type="type"
 			@input="setValue"
 			:value="field.value"
+			@blur="field.setDirty"
 		/>
-		<!--
-		<div v-for="error in errors" :key="error" class="error_message">
+		<div v-if="field.dirty">
+			<div  v-for="error in field.errors" :key="error" class="error_message">
 			{{error}}
+			</div>
 		</div>
-		-->
 	</div>
 </template>
 
@@ -18,11 +19,12 @@
 import Vue from "vue";
 import {Observer} from "mobx-vue";
 import {Prop,Component} from "vue-property-decorator";
-import {Field} from "@/store1";
+import {Field} from "@/store";
+import {Input as ElInput} from "element-ui";
 
 
 @Observer
-@Component({})
+@Component({components:{ElInput}})
 class InputText extends Vue {
 	@Prop() field:Field<any>;
 	@Prop({default:"text"}) type:string;
@@ -31,20 +33,25 @@ class InputText extends Vue {
 	setValue(value:any){
 		this.field.setValue(value);
 	}
+	showError(field:Field<any>){
+		return field.dirty && !field.valid;
+	}
 }
 
 export default InputText;
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
+
 	.input-text{
 		.error_message{
 			color:red;
 		}
-		>>> .el-input__inner{
+	}
+	.input-text.error{
+		 .el-input .el-input__inner{
 			border: 1px solid red;
-			color:red;
 		}
 	}
 	

@@ -1,7 +1,7 @@
 import { observable, action, computed,toJS } from 'mobx';
 import { BookModel } from '@/types';
 import { api } from '@/api/api';
-
+import moment from "moment";
 
 
 
@@ -18,7 +18,6 @@ export default class BooksList {
 	@action.bound
 	async fetchBooks(){
 		this.booksList = await api.books.getBooks();
-
 	}
 
 
@@ -31,7 +30,11 @@ export default class BooksList {
 
 	@computed
 	get list(){
-		return this.booksList.map(book => toJS(book));
+		return this.booksList.map(book => {
+			const clearedBook = toJS(book);
+			clearedBook.date = moment(clearedBook.date).format("DD/MM/YYYY");
+			return clearedBook;
+		});
 	}
 
 }

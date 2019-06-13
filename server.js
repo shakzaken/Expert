@@ -8,6 +8,7 @@ const usersRoute = require('./routes/users.routes');
 const booksRoute = require('./routes/books.routes');
 const categoriesRoute = require('./routes/categories.routes');
 const authRoute = require("./routes/auth.routes");
+const ordersRoute = require("./routes/orders.routes");
 const errorMiddleware = require("./middlewares/error.middleware");
 const cors = require('cors');
 
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 
 app.use("/users",usersRoute);
 app.use("/books",booksRoute);
+app.use("/orders",ordersRoute);
 app.use("/categories",categoriesRoute);
 app.use("/auth",authRoute);
 app.use(errorMiddleware);

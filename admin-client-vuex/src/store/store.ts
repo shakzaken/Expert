@@ -4,6 +4,7 @@ import UsersList from "./usersList";
 import UserModule from "./userModule";
 import CategoryModule from "./categoryModule";
 import CategoriesList from "./categoriesList";
+import AuthModule from "./authModule";
 
 
 
@@ -15,6 +16,7 @@ export default class AppStore{
 	booksList: BooksList;
 	categoryModule: CategoryModule;
 	categoriesList: CategoriesList;
+	authModule: AuthModule;
 
 
 	constructor(){
@@ -24,6 +26,7 @@ export default class AppStore{
 		this.booksList = new BooksList();
 		this.categoryModule = new CategoryModule();
 		this.categoriesList = new CategoriesList();
+		this.authModule = new AuthModule();
 	}
 
 

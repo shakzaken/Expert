@@ -1,6 +1,8 @@
 import {observable,computed,action, toJS} from "mobx";
 import axios,{ResponseType} from "axios" ;
-axios.defaults.baseURL= "http://localhost:3500"
+import Auth from "./auth";
+
+axios.defaults.baseURL= "http://localhost:3500";
 
 interface BookResource {
 	_id: string;
@@ -35,10 +37,14 @@ export default class Store {
 	@observable
 	books: Book[];
 
+	@observable
+	auth: Auth;
+
 
 	constructor(){
 		this.items = [];
 		this.books = [];
+		this.auth = new Auth();
 	}
 
 

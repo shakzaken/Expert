@@ -1,6 +1,7 @@
 import {observable,computed,action, toJS} from "mobx";
 import axios,{ResponseType} from "axios" ;
 import Auth from "./auth";
+import Users from "./users";
 
 axios.defaults.baseURL= "http://localhost:3500";
 
@@ -28,7 +29,7 @@ export interface Item {
 	quantity: number;
 }
 
-export default class Store {
+class Store {
 
 
 	@observable
@@ -40,11 +41,15 @@ export default class Store {
 	@observable
 	auth: Auth;
 
+	@observable
+	users: Users;
+
 
 	constructor(){
 		this.items = [];
 		this.books = [];
 		this.auth = new Auth();
+		this.users = new Users();
 	}
 
 
@@ -83,3 +88,6 @@ export default class Store {
 						.filter(item => item.quantity > 0);
 	}
 }
+
+const store = new Store();
+export {store,Store};

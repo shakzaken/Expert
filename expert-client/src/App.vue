@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-	<Navbar/>
+	<Navbar :store="store"/>
 	<div class="home">
 		<router-view></router-view>
 	</div>
@@ -16,7 +16,7 @@ import {Component} from "vue-property-decorator";
 import Card from "./components/Card.vue";
 import Navbar from "./components/Navbar.vue";
 import Footer from "./components/Footer.vue";
-
+import {store} from "@/store/store";
 
 
 @Observer
@@ -25,6 +25,9 @@ import Footer from "./components/Footer.vue";
 })
 export default class App extends Vue {
 
+  get store(){
+    return store;
+  }
 }
 </script>
 

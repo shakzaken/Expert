@@ -15,61 +15,50 @@ interface UserSummary {
   email:string;
 }
 
-export default class Auth {
+export default class Users {
 
-  @observable
-  user:UserSummary;
+
   @observable
   email: Field<string>;
   @observable
   password: Field<string>;
   @observable
-  token:string;
+  confirmPassword: Field<string>;
+  @observable
+  name: Field<string>;
+
 
 
 
   constructor(){
+    this.name = new Field(null,[Required,MinLength(3),MaxLength(255)]);
     this.email = new Field(null,[Required,MinLength(3),MaxLength(255)]);
+    this.confirmPassword = new Field(null,[Required,MinLength(3),MaxLength(255)]);
     this.password = new Field(null,[Required,MinLength(3),MaxLength(255)]);
-
   }
 
   @action.bound
-  async login() : Promise<boolean> {
-    try{
-      const result : AxiosResponse<LoginResponse> = await axios.post("/auth/login",{
-        email: this.email.value,
-        password: this.password.value
-      });
-      this.token = result.data.token;
-      this.user = {
-        id: result.data.user._id,
-        email: result.data.user.email
-      };
-      return true;
-    }catch (err) {
-      return false;
-    }
+  async register() : Promise<UserResource> {
+    return axios.post("/users",this.userData);
   }
 
-  @action.bound
-  logout() : void {
-    this.user = null;
-    this.token = null;
-    this.clearForm();
+  get userData() : UserResource {
+    return {
+      email: this.email.value,
+      name: this.name.value,
+      password: this.password.value,
+    };
   }
 
+
   @action.bound
-  clearForm() : void {
+  clearForm(){
     this.email.clearField();
+    this.name.clearField();
     this.password.clearField();
-
+    this.confirmPassword.clearField();
   }
 
-  @computed
-  get isLogin() : boolean {
-    return !!(this.user && this.user.id);
-  }
 
 
 }

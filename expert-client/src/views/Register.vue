@@ -1,13 +1,19 @@
 <template>
-    <div class="login-page">
-        <form-group header="Login" v-if="store && store.auth">
+    <div class="register-page">
+        <form-group header="Register" v-if="store && store.users">
+            <input-group label="Name">
+                <input-text :field="store.users.name"/>
+            </input-group>
             <input-group label="Email">
-                <input-text :field="store.auth.email"/>
+                <input-text :field="store.users.email"/>
             </input-group>
             <input-group label="Password">
-                <input-text type="password" :field="store.auth.password"/>
+                <input-text type="password" :field="store.users.password"/>
             </input-group>
-            <el-button @click="login">Login</el-button>
+            <input-group label="Confirm Password">
+                <input-text type="password" :field="store.users.confirmPassword"/>
+            </input-group>
+            <el-button @click="register">Register</el-button>
         </form-group>
     </div>
 
@@ -33,9 +39,13 @@ import {Store} from "@/store/store";
 export default class Login extends Vue{
     @Prop() store : Store;
 
-    async login(){
-      const result : boolean =  await this.store.auth.login();
+    async register(){
+      const result  =  await this.store.users.register();
       result && this.$router.push("/");
+    }
+
+    destroyed(){
+      this.store.users.clearForm();
     }
 
 }
@@ -45,7 +55,7 @@ export default class Login extends Vue{
 
 
 <style lang="scss" scoped>
-    .login-page{
+    .register-page{
         margin-left:20%;
         margin-top:50px;
     }

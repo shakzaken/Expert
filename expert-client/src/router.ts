@@ -4,8 +4,9 @@ import Home from './views/Home.vue'
 import MyCart from "./views/MyCart.vue";
 import MyOrders from "./views/MyOrders.vue";
 import Login from "./views/Login.vue";
-import Store from './store/store';
-const store = new Store();
+import Register from "./views/Register.vue";
+import {store} from './store/store';
+
 
 Vue.use(Router)
 
@@ -34,6 +35,12 @@ export default new Router({
       name:"Login",
       component: Login,
       props: {store:store}
-		}
+		},
+    {
+      path:"/register",
+      name:"Register",
+      component: Register,
+      props: {store:store}
+    }
   ]
 })

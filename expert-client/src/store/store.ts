@@ -1,6 +1,13 @@
 import {observable,computed,action, toJS} from "mobx";
+<<<<<<< HEAD
 import axios,{ResponseType,AxiosResponse} from "axios" ;
 axios.defaults.baseURL= "http://localhost:3500"
+=======
+import axios,{ResponseType} from "axios" ;
+import Auth from "./auth";
+
+axios.defaults.baseURL= "http://localhost:3500";
+>>>>>>> 8ec89cc64f8ffdf28d66639388702aef03fad707
 
 interface BookResource {
 	_id: string;
@@ -56,12 +63,17 @@ export default class Store {
 	books: Book[];
 
 	@observable
+<<<<<<< HEAD
 	orders: Order[];
+=======
+	auth: Auth;
+>>>>>>> 8ec89cc64f8ffdf28d66639388702aef03fad707
 
 
 	constructor(){
 		this.items = [];
 		this.books = [];
+		this.auth = new Auth();
 	}
 
 
@@ -146,8 +158,12 @@ function mapOrderResourceToOrder(orderResource: OrderResource) : Order {
 		id: orderResource._id,
 		items: orderResource.items.map(mapItemResourceToItem),
 	}
+<<<<<<< HEAD
 	if(dateInString){
 		order.date = dateInString
 	};
 	return order;
 }
+=======
+}
+>>>>>>> 8ec89cc64f8ffdf28d66639388702aef03fad707

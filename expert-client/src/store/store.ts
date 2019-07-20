@@ -1,5 +1,5 @@
 import {observable,computed,action, toJS} from "mobx";
-import axios,{ResponseType} from "axios" ;
+import axios,{ResponseType,AxiosResponse} from "axios" ;
 axios.defaults.baseURL= "http://localhost:3500"
 
 interface BookResource {
@@ -26,6 +26,26 @@ export interface Item {
 	quantity: number;
 }
 
+export interface ItemResource {
+	_id?: string;
+	bookId: string;
+	bookName: string;
+	imageUrl: string;
+	quantity: number;
+}
+
+export interface Order {
+	id? : string;
+	items: Item[];
+	date? : string;
+}
+
+export interface OrderResource {
+	_id? : string;
+	items: ItemResource[];
+	date? : string;
+}
+
 export default class Store {
 
 
@@ -35,12 +55,21 @@ export default class Store {
 	@observable
 	books: Book[];
 
+	@observable
+	orders: Order[];
+
 
 	constructor(){
 		this.items = [];
 		this.books = [];
 	}
 
+
+	@computed
+	get itemsForCart(){
+		return this.items.map(item => toJS(item))
+						.filter(item => item.quantity > 0);
+	}
 
 
 	@action.bound
@@ -54,6 +83,11 @@ export default class Store {
 				imageUrl : book.imageUrl
 			};
 		});
+	}
+	@action.bound
+	async fetchOrders(){
+		const response : AxiosResponse<OrderResource[]> = await axios.get("/orders");
+		this.orders = response.data.map(mapOrderResourceToOrder);
 	}
 
 	@action.bound
@@ -70,10 +104,50 @@ export default class Store {
 			item.quantity = item.quantity - 1;
 		}
 	}
-
-	@computed
-	get itemsForCart(){
-		return this.items.map(item => toJS(item))
-						.filter(item => item.quantity > 0);
+	
+	@action.bound
+	clearItems(){
+		this.items = [];
 	}
+
+	@action.bound
+	async saveOrder(){
+		const order  = {
+			items: this.itemsForCart
+		};
+		if(order.items.length > 0){
+			const response :AxiosResponse<Order> = await axios.post("/orders",order);
+			this.clearItems();
+		}
+		
+	}
+
+	
+}
+
+
+function mapItemResourceToItem(itemResource : ItemResource): Item {
+	return {
+		id: itemResource._id,
+		bookName: itemResource.bookName,
+		bookId: itemResource.bookId,
+		imageUrl: itemResource.imageUrl,
+		quantity: itemResource.quantity
+	};
+}
+
+function mapOrderResourceToOrder(orderResource: OrderResource) : Order {
+
+
+	const date = new Date(orderResource.date || '');
+	const dateInString = orderResource.date && date.toLocaleDateString() || null;
+
+	const order : Order = {
+		id: orderResource._id,
+		items: orderResource.items.map(mapItemResourceToItem),
+	}
+	if(dateInString){
+		order.date = dateInString
+	};
+	return order;
 }

@@ -18,13 +18,23 @@ const itemSchema = new Schema({
 		required:true,
 		min:1,
 		max:1000
+	},
+	imageUrl:{
+		type: String,
+		required: true,
+		minlength:3,
+		maxlength: 512
 	}
 });
 
 
 const orderSchema = new Schema({
 
-	items: [itemSchema]
+	items: [itemSchema],
+	date: {
+		type: Date,
+		default: Date.now
+	}
 });
 
 module.exports = mongoose.model("Order",orderSchema);

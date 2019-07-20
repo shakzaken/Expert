@@ -24,7 +24,9 @@
 				</el-table-column>
 			</el-table>
 		</div>
-		
+		<div class="button-block">
+			<el-button @click="saveOrder">Save Order</el-button>
+		</div>
 	</div>
 </template>
 
@@ -43,6 +45,13 @@ import Store from '../store/store';
 @Component({})
 export default class MyCart extends Vue {
 	@Prop() store:Store;
+
+	async saveOrder(){
+		if(confirm("Are you sure you want to make this order?")){
+			await this.store.saveOrder();
+			this.$router.push("/");
+		}
+	}
 
 }
 

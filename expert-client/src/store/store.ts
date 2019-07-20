@@ -1,5 +1,5 @@
 import {observable,computed,action, toJS} from "mobx";
-import axios,{ResponseType} from "axios" ;
+import axios,{ResponseType,AxiosResponse} from "axios" ;
 import Auth from "./auth";
 import Users from "./users";
 
@@ -19,6 +19,26 @@ interface Book {
 	imageUrl: string;
 	description: string;
 	categoryId: string;
+}
+
+export interface ItemResource {
+  _id?: string;
+  bookId: string;
+  bookName: string;
+  imageUrl: string;
+  quantity: number;
+}
+
+export interface Order {
+  id? : string;
+  items: Item[];
+  date? : string;
+}
+
+export interface OrderResource {
+  _id? : string;
+  items: ItemResource[];
+  date? : string;
 }
 
 export interface Item {

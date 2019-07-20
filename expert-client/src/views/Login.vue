@@ -19,7 +19,6 @@
 import Vue from "vue";
 import {Component,Prop} from "vue-property-decorator";
 import {Observer} from "mobx-vue";
-//import {InputGroup,FormGroup,InputText} from "@/components";
 import InputGroup from "@/components/input_group.vue";
 import FormGroup from "@/components/form_group.vue";
 import InputText from "@/components/input_text.vue";
@@ -34,8 +33,22 @@ export default class Login extends Vue{
     @Prop() store : Store;
 
     async login(){
-      const result : boolean =  await this.store.auth.login();
-      result && this.$router.push("/");
+        const result : boolean =  await this.store.auth.login();
+        if(result){
+          this.$message({
+            type:"success",
+            message:"You are logged in",
+            offset:70
+          });
+          result && this.$router.push("/");
+        }else{
+          this.$message({
+            type:"error",
+            message:"Email or Password are invalid",
+            offset:70
+          });
+        }
+
     }
 
 }
@@ -47,6 +60,6 @@ export default class Login extends Vue{
 <style lang="scss" scoped>
     .login-page{
         margin-left:20%;
-        margin-top:50px;
+        margin-top:80px;
     }
 </style>

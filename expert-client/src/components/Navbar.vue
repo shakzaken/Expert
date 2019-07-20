@@ -2,8 +2,8 @@
 	<nav class="navbar">
 		<ul class="title">
 			<span class="title-inner">
-				<router-link to="/">Expert</router-link>	
-			</span>	
+				<router-link to="/">Expert</router-link>
+			</span>
 		</ul>
 		<ul class="links">
 			<li class="link">
@@ -17,6 +17,26 @@
 				</router-link>
 			</li>
 		</ul>
+		<ul class="links" v-if="!store.auth.isLogin">
+			<li class="link">
+				<router-link to="/login">
+					<a>Login</a>
+				</router-link>
+			</li>
+			<li class="link">
+				<router-link to="/register">
+					<a>Register</a>
+				</router-link>
+			</li>
+		</ul>
+		<ul class="links" v-else>
+			<li class="link">
+				<a>{{store.auth.email.value}}</a>
+			</li>
+			<li class="link logout-link">
+				<a @click="store.auth.logout()">Logout</a>
+			</li>
+		</ul>
 	</nav>
 </template>
 
@@ -27,6 +47,7 @@
 import Vue from 'vue';
 import {Observer} from "mobx-vue";
 import {Prop,Component} from 'vue-property-decorator';
+import Store from "../store/store";
 
 
 
@@ -36,7 +57,13 @@ import {Prop,Component} from 'vue-property-decorator';
 })
 export default class Navbar extends Vue {
 
-	
+	@Prop() store: Store;
+
+	get isLogin(){
+	  return this.store.auth.isLogin;
+	}
+
+
 }
 </script>
 
@@ -59,7 +86,7 @@ export default class Navbar extends Vue {
 				color:white;
 			}
 			.title-inner{
-				
+
 				margin-left:40%;
 			}
 		}
@@ -75,6 +102,9 @@ export default class Navbar extends Vue {
 				a{
 					color:white;
 				}
+			}
+			.logout-link{
+				cursor: pointer;
 			}
 		}
 	}

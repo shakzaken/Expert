@@ -10,7 +10,7 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Card from "@/components/Card.vue";
 import {Observer} from "mobx-vue";
-import Store, { Item } from "@/store/store";
+import  { Item,Store } from "@/store/store";
 
 
 @Observer
@@ -32,7 +32,7 @@ export default class Home extends Vue {
 	mounted() {
 		if(this.store.items.length === 0){
 			this.store.fetchBooks();
-		}	
+		}
 	}
 }
 </script>
@@ -50,6 +50,6 @@ export default class Home extends Vue {
 		}
 	}
 
-	
+
 </style>
 

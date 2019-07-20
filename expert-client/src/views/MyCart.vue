@@ -36,7 +36,7 @@
 import Vue from 'vue'
 import {Observer} from "mobx-vue";
 import {Component,Prop} from "vue-property-decorator";
-import Store from '../store/store';
+import {Store} from '../store/store';
 
 
 

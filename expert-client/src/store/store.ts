@@ -1,13 +1,9 @@
 import {observable,computed,action, toJS} from "mobx";
-<<<<<<< HEAD
-import axios,{ResponseType,AxiosResponse} from "axios" ;
-axios.defaults.baseURL= "http://localhost:3500"
-=======
 import axios,{ResponseType} from "axios" ;
 import Auth from "./auth";
+import Users from "./users";
 
 axios.defaults.baseURL= "http://localhost:3500";
->>>>>>> 8ec89cc64f8ffdf28d66639388702aef03fad707
 
 interface BookResource {
 	_id: string;
@@ -33,27 +29,7 @@ export interface Item {
 	quantity: number;
 }
 
-export interface ItemResource {
-	_id?: string;
-	bookId: string;
-	bookName: string;
-	imageUrl: string;
-	quantity: number;
-}
-
-export interface Order {
-	id? : string;
-	items: Item[];
-	date? : string;
-}
-
-export interface OrderResource {
-	_id? : string;
-	items: ItemResource[];
-	date? : string;
-}
-
-export default class Store {
+class Store {
 
 
 	@observable
@@ -63,17 +39,20 @@ export default class Store {
 	books: Book[];
 
 	@observable
-<<<<<<< HEAD
+
 	orders: Order[];
-=======
+
 	auth: Auth;
->>>>>>> 8ec89cc64f8ffdf28d66639388702aef03fad707
+
+	@observable
+	users: Users;
 
 
 	constructor(){
 		this.items = [];
 		this.books = [];
 		this.auth = new Auth();
+		this.users = new Users();
 	}
 
 
@@ -116,7 +95,7 @@ export default class Store {
 			item.quantity = item.quantity - 1;
 		}
 	}
-	
+
 	@action.bound
 	clearItems(){
 		this.items = [];
@@ -131,10 +110,10 @@ export default class Store {
 			const response :AxiosResponse<Order> = await axios.post("/orders",order);
 			this.clearItems();
 		}
-		
+
 	}
 
-	
+
 }
 
 
@@ -158,12 +137,12 @@ function mapOrderResourceToOrder(orderResource: OrderResource) : Order {
 		id: orderResource._id,
 		items: orderResource.items.map(mapItemResourceToItem),
 	}
-<<<<<<< HEAD
+
 	if(dateInString){
 		order.date = dateInString
 	};
 	return order;
 }
-=======
-}
->>>>>>> 8ec89cc64f8ffdf28d66639388702aef03fad707
+
+const store = new Store();
+export {store,Store};

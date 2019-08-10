@@ -1,6 +1,6 @@
 <template>
 	<div class="form-group">
-		<h4 class="header">{{header}}</h4>
+		<h2 class="header">{{header}}</h2>
 		<div class="form-group-body">
 			<slot></slot>
 		</div>
@@ -19,9 +19,12 @@ export default {
 
 <style lang="scss" scoped>
 	.form-group{
-		&-body{
-			width:50%;
-		}
+		background-color: #f1f1f1;
+		display: inline-block;
+		border-radius: 20px;
+		width:40%;
+		padding:30px;
+
     }
     .header{
         margin-bottom: 30px;

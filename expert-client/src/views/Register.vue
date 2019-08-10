@@ -1,19 +1,21 @@
 <template>
     <div class="register-page">
-        <form-group header="Register" v-if="store && store.users">
+        <form-group header="Register" v-if="store">
             <input-group label="Name">
-                <input-text :field="store.users.name"/>
+                <input-text :field="store.name"/>
             </input-group>
             <input-group label="Email">
-                <input-text :field="store.users.email"/>
+                <input-text :field="store.email"/>
             </input-group>
             <input-group label="Password">
-                <input-text type="password" :field="store.users.password"/>
+                <input-text type="password" :field="store.password"/>
             </input-group>
             <input-group label="Confirm Password">
-                <input-text type="password" :field="store.users.confirmPassword"/>
+                <input-text type="password" :field="store.confirmPassword"/>
             </input-group>
-            <el-button @click="register">Register</el-button>
+            <div class="button-container">
+                <el-button round @click="register">Register</el-button>
+            </div>
         </form-group>
     </div>
 
@@ -25,27 +27,27 @@
 import Vue from "vue";
 import {Component,Prop} from "vue-property-decorator";
 import {Observer} from "mobx-vue";
-//import {InputGroup,FormGroup,InputText} from "@/components";
 import InputGroup from "@/components/input_group.vue";
 import FormGroup from "@/components/form_group.vue";
 import InputText from "@/components/input_text.vue";
 import Auth from "../store/auth";
-import {Store} from "@/store/store";
+import {Store} from "../store/store";
+import Users from '../store/users';
 
 @Observer
 @Component({
   components:{InputGroup,FormGroup,InputText}
 })
 export default class Login extends Vue{
-    @Prop() store : Store;
+    @Prop() store : Users;
 
     async register(){
-      const result  =  await this.store.users.register();
+      const result  =  await this.store.register();
       result && this.$router.push("/");
     }
 
     destroyed(){
-      this.store.users.clearForm();
+      this.store.clearForm();
     }
 
 }
@@ -58,5 +60,10 @@ export default class Login extends Vue{
     .register-page{
         margin-left:20%;
         margin-top:50px;
+        .button-container{
+            display: flex;
+            justify-content: flex-end;
+        }
     }
+    
 </style>

@@ -5,15 +5,7 @@ import {MaxLength,MinLength,Required} from "./validators";
 import axios, {AxiosResponse} from "axios";
 import {User,UserResource} from "@/store/types";
 
-interface LoginResponse {
-  user: UserResource;
-  token: string;
-}
 
-interface UserSummary {
-  id:string;
-  email:string;
-}
 
 export default class Users {
 

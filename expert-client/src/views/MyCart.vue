@@ -1,6 +1,6 @@
 <template>
 	<div class="my-cart">
-		<h3 class="title">My Cart</h3>
+		<h2 class="title">My Cart</h2>
 		<div class="table">
 			<el-table
 				:data="store.itemsForCart"
@@ -25,7 +25,7 @@
 			</el-table>
 		</div>
 		<div class="button-block">
-			<el-button @click="saveOrder">Save Order</el-button>
+			<el-button round @click="saveOrder">Save Order</el-button>
 		</div>
 	</div>
 </template>
@@ -37,6 +37,7 @@ import Vue from 'vue'
 import {Observer} from "mobx-vue";
 import {Component,Prop} from "vue-property-decorator";
 import {Store} from '../store/store';
+import { CartStore } from '../store/cart';
 
 
 
@@ -44,7 +45,7 @@ import {Store} from '../store/store';
 @Observer
 @Component({})
 export default class MyCart extends Vue {
-	@Prop() store:Store;
+	@Prop() store:CartStore;
 
 	async saveOrder(){
 		if(confirm("Are you sure you want to make this order?")){
@@ -64,9 +65,18 @@ export default class MyCart extends Vue {
 
 	.my-cart{
 		padding: 50px 100px;
+		display: inline-block;
+		max-width:1000px;
+		margin-left:20%;
+	
 		.title{
 			margin-left:20%;
 			margin-bottom: 20px;
+		}
+		.button-block{
+			margin-top:20px;
+			display:flex;
+			justify-content: flex-end;
 		}
 	}
 

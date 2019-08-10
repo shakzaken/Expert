@@ -3,17 +3,9 @@ import {Field} from "@/store/field";
 import {computed, observable,action} from "mobx";
 import {MaxLength,MinLength,Required} from "./validators";
 import axios, {AxiosResponse} from "axios";
-import {User,UserResource} from "@/store/types";
+import {User,UserResource,UserSummary,LoginResponse} from "@/store/types";
 
-interface LoginResponse {
-  user: UserResource;
-  token: string;
-}
 
-interface UserSummary {
-  id:string;
-  email:string;
-}
 
 export default class Auth {
 
@@ -35,8 +27,7 @@ export default class Auth {
   }
 
   @action.bound
-  async login() : Promise<boolean> {
-    try{
+  async login() : Promise<void> {
       const result : AxiosResponse<LoginResponse> = await axios.post("/auth/login",{
         email: this.email.value,
         password: this.password.value
@@ -46,10 +37,6 @@ export default class Auth {
         id: result.data.user._id,
         email: result.data.user.email
       };
-      return true;
-    }catch (err) {
-      return false;
-    }
   }
 
   @action.bound

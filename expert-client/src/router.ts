@@ -16,31 +16,31 @@ export default new Router({
       path: '/',
       name: 'home',
 			component: Home,
-			props: {store:store}
+			props: {store:store.cart}
     },
     {
       path: '/my-cart',
       name: 'myCart',
 		  component: MyCart,
-		  props:{store:store}
+		  props:{store:store.cart}
 		},
 		{
 			path:"/my-orders",
 			name:"myOrders",
 			component: MyOrders,
-			props: {store:store}
+			props: {store:store.cart}
 		},
 		{
       path:"/login",
       name:"Login",
       component: Login,
-      props: {store:store}
+      props: {store:store.auth}
 		},
     {
       path:"/register",
       name:"Register",
       component: Register,
-      props: {store:store}
+      props: {store:store.users}
     }
   ]
 })

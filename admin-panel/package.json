@@ -16,7 +16,7 @@
     "lodash": "^4.17.11",
     "mobx": "^5.9.0",
     "mobx-vue": "^2.0.8",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "sass-loader": "^7.1.0",
     "vue": "^2.5.21",
     "vue-class-component": "^6.0.0",
